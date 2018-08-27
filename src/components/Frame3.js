@@ -10,7 +10,9 @@ export default class Frame3 extends Component {
 
         return (
             <div className={ state.frame_3__door ? 'frames__frame frames__frame-3 door' : 'frames__frame frames__frame-3 window' }>
-                <div className="num">{this.props.num}</div>
+                <div className='frames__w'>
+                    <input type='text' defaultValue={state.frame_3__width} />
+                </div>
                 <div className='frames__t'>
                     <Remove num={this.props.num} context={context} />
                 </div>
