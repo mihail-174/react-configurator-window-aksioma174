@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Remove from './Remove';
 import RemoveBottom from './RemoveBottom';
 import AddBottom from './AddBottom';
-import AddTop from './AddTop';
 
 export default class Frame3 extends Component {
     render() {

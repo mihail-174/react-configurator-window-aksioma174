@@ -8,13 +8,17 @@ const Context = React.createContext()
 
 let initialState = {
     winds: 1,
-    frames: 1,
+    frame_1__width: 650,
+    frame_2__width: 650,
+    frame_3__width: 650,
     frame_1__window: true,
     frame_2__window: false,
     frame_3__window: false,
     frame_1__door: false,
     frame_2__door: false,
     frame_3__door: false,
+    width: 650,
+    height: 1400
 }
 
 class App extends Component {
@@ -29,7 +33,6 @@ class App extends Component {
       this.setState(newState);
     }
     render() {
-        const {context} = this.props;
         return (
            <Context.Provider value={{ state: this.state, methods: {setAppState: (value) => this.setState(value)}}}>
             <Context.Consumer>{context => (
@@ -38,28 +41,28 @@ class App extends Component {
 
                         <div className='size-top'>
                             <div className='width-main'>
-                                <input type='text' value='1300' />
+                                <input type='text' defaultValue={this.state.width} />
                             </div>
                             <div className='width-frames'>
                                 <div className='width-frame'>
-                                    <input type='text' value='650' />
+                                    <input type='text' defaultValue={this.state.frame_1__width} />
                                 </div>
                                 <div className='width-frame'>
-                                    <input type='text' value='650' />
+                                    <input type='text' defaultValue={this.state.frame_1__width} />
                                 </div>
                             </div>
                         </div>
 
                         <div className='size-left'>
                             <div className='width-main'>
-                                <input type='text' value='1400' />
+                                <input type='text' defaultValue={this.state.height} />
                             </div>
                             <div className='width-frames'>
                                 <div className='width-frame'>
-                                    <input type='text' value='1400' />
+                                    <input type='text' defaultValue='1400' />
                                 </div>
                                 <div className='width-frame'>
-                                    <input type='text' value='800' />
+                                    <input type='text' defaultValue='800' />
                                 </div>
                             </div>
                         </div>

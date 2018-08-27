@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Remove from './Remove';
 import RemoveBottom from './RemoveBottom';
 import AddBottom from './AddBottom';
-import AddTop from './AddTop';
 
 export default class Frame2 extends Component {
     render() {
@@ -13,7 +12,13 @@ export default class Frame2 extends Component {
             <div className={ state.frame_2__door ? 'frames__frame frames__frame-2 door' : 'frames__frame frames__frame-2 window' }>
                 <div className="num">{this.props.num}</div>
                 <div className='frames__t'>
-                    <Remove num={this.props.num} context={context} />
+                    {
+                        state.frame_3__window
+                        ?
+                        ''
+                        :
+                        <Remove num={this.props.num} context={context} />
+                    }
                 </div>
                 <div className='frames__b'>
                     {

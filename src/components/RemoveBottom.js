@@ -6,8 +6,7 @@ export default class RemoveBottom extends Component {
         this.click = this.click.bind(this);
     }
     click(e) {
-        const {context} = this.props,
-                state = context.state;
+        const {context} = this.props;
 
         context.methods.setAppState({
             ['frame_' + this.props.num + '__door']: false
@@ -17,8 +16,6 @@ export default class RemoveBottom extends Component {
         e.currentTarget.parentNode.parentNode.classList.add('window');
     }
     render() {
-        const {context} = this.props,
-                state = context.state;
         return (
             <div className='del' onClick={this.click}></div>
         )
