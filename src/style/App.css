@@ -1,0 +1,132 @@
+.App {
+    border: 1px solid;
+    position: relative;
+    display: flex;
+    /* width: 500px; */
+    /* height: 700px; */
+    padding: 50px 0 0 0;
+}
+input {
+    width: 50px;
+    text-align: center;
+    padding: 0;
+}
+.size-top {
+    background-color: antiquewhite;
+    position: absolute;
+    top: 0;
+    left: 80px;
+    right: 0;
+    height: 50px;
+}
+.size-top .width-frame {
+    width: 180px;
+}
+.size-left {
+    background-color: aquamarine;
+    display: flex;
+    /* position: absolute;
+    top: 80px;
+    left: 0;
+    bottom: 0; */
+    /* width: 100px; */
+}
+.size-left .width-frames {
+    flex-direction: column;
+}
+.size-left .width-frame {
+    height: 180px;
+}
+.width-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.width-frames {
+    display: flex;
+}
+.width-frame {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.del {
+    background-color: red;
+    background: url(https://aksioma174.ru/sites/all/themes/axioma/images/wind/minus.png) 0 0 no-repeat;
+    width: 49px;
+    height: 49px;
+    cursor: pointer;
+}
+.add {
+    background-color: orange;
+    background: url(https://aksioma174.ru/sites/all/themes/axioma/images/wind/plus.png) 0 0 no-repeat;
+    width: 49px;
+    height: 49px;
+    cursor: pointer;
+}
+
+
+
+.frames {
+    display: flex;
+    height: 100%;
+}
+.frames__frame {
+    flex: 0 0 auto;
+    width: 180px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-right: -1px;
+}
+.frames__t {
+    /* border: 1px solid; */
+    height: 272px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.frames__b {
+    /* border: 1px solid; */
+    height: 149px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.frames__frame.window .frames__t {
+    background-color: blue;
+    background: url(https://aksioma174.ru/sites/all/themes/axioma/images/wind/wnd.jpg) 0 0 no-repeat;
+}
+.frames__frame.door .frames__t {
+    background-color: blue;
+    background: url(https://aksioma174.ru/sites/all/themes/axioma/images/wind/balcony_door.jpg) 0 0 no-repeat;
+}
+.frames__frame.door .frames__b {
+    background-color: green;
+    background: url(https://aksioma174.ru/sites/all/themes/axioma/images/wind/balcony_door.jpg) 0 -272px no-repeat;
+}
+
+.action {
+	width: 100px;
+}
+.action__top {
+	height: 272px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.action__bottom {
+	height: 149px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.num {
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 1;
+}
