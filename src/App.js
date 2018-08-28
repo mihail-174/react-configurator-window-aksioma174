@@ -8,21 +8,48 @@ const Context = React.createContext()
 
 let initialState = {
     winds: 2,
+    width: 1300,
+    height: 1400,
+    height_wind: 1400,
+    height_door: 800,
 
-    frame_1__width: 650,
-    frame_2__width: 750,
-    frame_3__width: 850,
+    frame__1__width: 100,
+    frame__1__wind: true,
+    frame__1__door: false,
 
-    frame_1__window: true,
-    frame_2__window: true,
-    frame_3__window: false,
+    frame__2__width: 100,
+    frame__2__wind: true,
+    frame__2__door: false,
 
-    frame_1__door: false,
-    frame_2__door: false,
-    frame_3__door: false,
+    frame__3__width: 100,
+    frame__3__wind: false,
+    frame__3__door: false,
 
-    width: 1500,
-    height: 1400
+    // frame__2: {
+    //     width: 100,
+    //     wind: true,
+    //     door: false
+    // },
+    // frame__3: {
+    //     width: 100,
+    //     wind: false,
+    //     door: false
+    // },
+
+    // frame_1__width: 650,
+    // frame_1__height: 1400,
+    // frame_2__width: 750,
+    // frame_2__height: 1400,
+    // frame_3__width: 850,
+    // frame_3__height: 1400,
+
+    // frame_1__window: true,
+    // frame_2__window: true,
+    // frame_3__window: false,
+
+    // frame_1__door: false,
+    // frame_2__door: false,
+    // frame_3__door: false
 }
 
 class App extends Component {
@@ -32,6 +59,8 @@ class App extends Component {
             ...initialState
         }
         this.setAppState = this.setAppState.bind(this);
+        this.onChangeWidth = this.onChangeWidth.bind(this);
+        this.onChangeHeight = this.onChangeHeight.bind(this);
     }
     setAppState(newState) {
       this.setState(newState);
@@ -48,6 +77,25 @@ class App extends Component {
     //
     //
 
+    onChangeWidth(e) {
+        // const {context} = this.props;
+        this.setState({
+            width: parseInt( e.currentTarget.value, 0 ),
+            frame__1__width: e.currentTarget.value/this.state.winds,
+            frame__2__width: e.currentTarget.value/this.state.winds,
+            frame__3__width: e.currentTarget.value/this.state.winds
+        });
+        console.log( e.currentTarget.value/this.state.winds );
+
+    }
+    onChangeHeight(e) {
+        const {context} = this.props;
+        this.setState({
+            height: parseInt( e.currentTarget.value, 0 )
+
+        });
+    }
+
     render() {
         return (
            <Context.Provider value={{ state: this.state, methods: {setAppState: (value) => this.setState(value)}}}>
@@ -57,7 +105,7 @@ class App extends Component {
 
                     <div className='markup-height'>
                         <div className='l'>
-                            <input type='text' defaultValue='1500' />
+                            <input type='text' onChange={this.onChangeHeight} defaultValue={this.state.height} />
                         </div>
                         <div>
                             <div className='t'>
@@ -82,7 +130,16 @@ class App extends Component {
                         <div className='frames'>
 
                             <div className='markup-width'>
-                                <input type='text' defaultValue={this.state.width} />
+
+
+{(this.state.frame__1__wind?this.state.frame__1__width:0) + (this.state.frame__2__wind?this.state.frame__2__width:0) + (this.state.frame__3__wind?this.state.frame__3__width:0)}
+
+                                <input type='text' onChange={this.onChangeWidth} defaultValue={
+                                    (this.state.frame__1__wind?this.state.frame__1__width:0) +
+                                    (this.state.frame__2__wind?this.state.frame__2__width:0) +
+                                    (this.state.frame__3__wind?this.state.frame__3__width:0)
+                                } />
+
                             </div>
 
                             <div className='frames__cont'>

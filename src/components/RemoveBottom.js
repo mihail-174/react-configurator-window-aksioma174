@@ -9,7 +9,7 @@ export default class RemoveBottom extends Component {
         const {context} = this.props;
 
         context.methods.setAppState({
-            ['frame_' + this.props.num + '__door']: false
+            ['frame__' + this.props.num + '__door']: false
         });
 
         e.currentTarget.parentNode.parentNode.classList.remove('door');

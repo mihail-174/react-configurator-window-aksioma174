@@ -4,18 +4,32 @@ import RemoveBottom from './RemoveBottom';
 import AddBottom from './AddBottom';
 
 export default class Frame1 extends Component {
+    constructor(props) {
+        super(props);
+        this.onChangeWidth = this.onChangeWidth.bind(this);
+    }
+    onChangeWidth(e) {
+        const {context} = this.props;
+        context.methods.setAppState({
+            // frame_1__width: parseInt( e.currentTarget.value, 0 )
+            // frame__1: {
+            //     width: parseInt( e.currentTarget.value, 0 )
+            // }
+            frame__1__width: parseInt( e.currentTarget.value, 0 )
+        });
+    }
     render() {
         const {context} = this.props,
                 state = context.state;
 
         return (
-            <div className={ state.frame_1__door ? 'frames__frame frames__frame-1 door' : 'frames__frame frames__frame-1 window' }>
+            <div className={ state.frame__1__door ? 'frames__frame frames__frame-1 door' : 'frames__frame frames__frame-1 window' }>
                 <div className='frames__w'>
-                    <input type='text' defaultValue={state.frame_2__width} />
+                    <input type='text' onChange={this.onChangeWidth} defaultValue={state.frame__1__width} />
                 </div>
                 <div className='frames__t'>
                     {
-                        state.frame_2__window || state.winds===1
+                        state.frame__1__wind || state.winds===1
                         ?
                         ''
                         :
@@ -24,7 +38,7 @@ export default class Frame1 extends Component {
                 </div>
                 <div className='frames__b'>
                     {
-                        state['frame_'+this.props.num+'__door']
+                        state['frame__'+this.props.num+'__door']
                         ?
                         <RemoveBottom num={this.props.num} context={context} />
                         :
@@ -35,3 +49,10 @@ export default class Frame1 extends Component {
         )
     }
 }
+
+
+/*
+
+
+
+*/
