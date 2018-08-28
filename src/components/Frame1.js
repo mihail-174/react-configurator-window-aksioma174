@@ -10,8 +10,9 @@ export default class Frame1 extends Component {
 
         return (
             <div className={ state.frame_1__door ? 'frames__frame frames__frame-1 door' : 'frames__frame frames__frame-1 window' }>
-
-
+                <div className='frames__w'>
+                    <input type='text' defaultValue={state.frame_2__width} />
+                </div>
                 <div className='frames__t'>
                     {
                         state.frame_2__window || state.winds===1

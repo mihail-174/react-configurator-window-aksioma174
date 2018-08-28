@@ -36,6 +36,18 @@ class App extends Component {
     setAppState(newState) {
       this.setState(newState);
     }
+
+    // <div className='markup-height'>
+    // </div>
+    //
+    // <div className='sf-t-w'>
+    //     <input type='text' defaultValue={this.state.frame_1__width} />
+    // </div>
+    //
+    //
+    //
+    //
+
     render() {
         return (
            <Context.Provider value={{ state: this.state, methods: {setAppState: (value) => this.setState(value)}}}>
@@ -43,28 +55,33 @@ class App extends Component {
                 <div>
                     <div className="App">
 
-                        <div className='markup-height'>
+                    <div className='markup-height'>
+                        <div className='l'>
+                            <input type='text' defaultValue='1500' />
                         </div>
-
-                        <div className='sf-t-w'>
-                            <input type='text' defaultValue={this.state.frame_1__width} />
-                        </div>
-
-                        <div className='markup-height'>
-                            <div className='l'>
-                                <input type='text' defaultValue={this.state.height} />
-                            </div>
+                        <div>
                             <div className='t'>
                                 <input type='text' defaultValue='1400' />
                             </div>
-                            <div className='b'>
-                                <input type='text' defaultValue='800' />
-                            </div>
+                            {
+                                this.state.frame_1__door
+                                ||
+                                this.state.frame_2__door
+                                ||
+                                this.state.frame_3__door
+                                ?
+                                <div className='b'>
+                                    <input type='text' defaultValue='800' />
+                                </div>
+                                :
+                                ''
+                            }
                         </div>
+                    </div>
 
                         <div className='frames'>
 
-                            <div className='frames__width'>
+                            <div className='markup-width'>
                                 <input type='text' defaultValue={this.state.width} />
                             </div>
 
@@ -83,7 +100,6 @@ class App extends Component {
                                 </div>
                             </div>
                         }
-
 
 
                         {/*
