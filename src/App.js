@@ -13,43 +13,26 @@ let initialState = {
     height_wind: 1400,
     height_door: 800,
 
-    frame__1__width: 100,
+    frame__1__width: 650,
     frame__1__wind: true,
     frame__1__door: false,
+    frame__1__open_horizontal: 0,
+    frame__1__open_vertical: false,
+    frame__1__mosquito: false,
 
-    frame__2__width: 100,
+    frame__2__width: 650,
     frame__2__wind: true,
     frame__2__door: false,
+    frame__2__open_horizontal: 0,
+    frame__2__open_vertical: false,
+    frame__2__mosquito: false,
 
-    frame__3__width: 100,
+    frame__3__width: 650,
     frame__3__wind: false,
     frame__3__door: false,
-
-    // frame__2: {
-    //     width: 100,
-    //     wind: true,
-    //     door: false
-    // },
-    // frame__3: {
-    //     width: 100,
-    //     wind: false,
-    //     door: false
-    // },
-
-    // frame_1__width: 650,
-    // frame_1__height: 1400,
-    // frame_2__width: 750,
-    // frame_2__height: 1400,
-    // frame_3__width: 850,
-    // frame_3__height: 1400,
-
-    // frame_1__window: true,
-    // frame_2__window: true,
-    // frame_3__window: false,
-
-    // frame_1__door: false,
-    // frame_2__door: false,
-    // frame_3__door: false
+    frame__3__open_horizontal: 0,
+    frame__3__open_vertical: false,
+    frame__3__mosquito: false
 }
 
 class App extends Component {
@@ -61,38 +44,55 @@ class App extends Component {
         this.setAppState = this.setAppState.bind(this);
         this.onChangeWidth = this.onChangeWidth.bind(this);
         this.onChangeHeight = this.onChangeHeight.bind(this);
+        this.onChangeHeightWind = this.onChangeHeightWind.bind(this);
+        this.onChangeHeightDoor = this.onChangeHeightDoor.bind(this);
     }
     setAppState(newState) {
       this.setState(newState);
     }
-
-    // <div className='markup-height'>
-    // </div>
-    //
-    // <div className='sf-t-w'>
-    //     <input type='text' defaultValue={this.state.frame_1__width} />
-    // </div>
-    //
-    //
-    //
-    //
-
     onChangeWidth(e) {
-        // const {context} = this.props;
         this.setState({
             width: parseInt( e.currentTarget.value, 0 ),
             frame__1__width: e.currentTarget.value/this.state.winds,
             frame__2__width: e.currentTarget.value/this.state.winds,
             frame__3__width: e.currentTarget.value/this.state.winds
         });
-        console.log( e.currentTarget.value/this.state.winds );
-
     }
     onChangeHeight(e) {
-        const {context} = this.props;
-        this.setState({
-            height: parseInt( e.currentTarget.value, 0 )
+        // const {context} = this.props;
 
+        // let persentWind = 0,
+        //     persentDoor = 0;
+        // persentWind = this.state.height_wind * 100 / e.currentTarget.value;
+        // persentDoor = this.state.height_door * 100 / e.currentTarget.value;
+
+        let heightWind = 0,
+            heightDoor = 0;
+        heightWind = e.currentTarget.value * 63.63636363636363 / 100;
+        heightDoor = e.currentTarget.value * 36.36363636363637 / 100;
+
+        this.setState({
+            height: parseInt( e.currentTarget.value, 0 ),
+            height_wind: heightWind,
+            height_door: heightDoor
+        });
+    }
+    onChangeHeightWind(e) {
+        // const {context} = this.props;
+        let heightDoor = 0;
+        if ( this.state.frame__1__door || this.state.frame__2__door || this.state.frame__3__door ) {
+            heightDoor = this.state.height_door;
+        }
+        this.setState({
+            height: parseInt( e.currentTarget.value, 0 ) + heightDoor,
+            height_wind: parseInt( e.currentTarget.value, 0 )
+        });
+    }
+    onChangeHeightDoor(e) {
+        // const {context} = this.props;
+        this.setState({
+            height: this.state.height_wind + parseInt( e.currentTarget.value, 0 ),
+            height_door: parseInt( e.currentTarget.value, 0 )
         });
     }
 
@@ -103,43 +103,34 @@ class App extends Component {
                 <div>
                     <div className="App">
 
-                    <div className='markup-height'>
-                        <div className='l'>
-                            <input type='text' onChange={this.onChangeHeight} defaultValue={this.state.height} />
-                        </div>
-                        <div>
-                            <div className='t'>
-                                <input type='text' defaultValue='1400' />
+                        <div className='markup-height'>
+                            <div className='l'>
+                                <input type='text' onChange={this.onChangeHeight} value={this.state.height} />
                             </div>
-                            {
-                                this.state.frame_1__door
-                                ||
-                                this.state.frame_2__door
-                                ||
-                                this.state.frame_3__door
-                                ?
-                                <div className='b'>
-                                    <input type='text' defaultValue='800' />
+                            <div>
+                                <div className='t'>
+                                    <input type='text' onChange={this.onChangeHeightWind} value={this.state.height_wind} />
                                 </div>
-                                :
-                                ''
-                            }
+                                {
+                                    this.state.frame__1__door
+                                    ||
+                                    this.state.frame__2__door
+                                    ||
+                                    this.state.frame__3__door
+                                    ?
+                                    <div className='b'>
+                                        <input type='text' onChange={this.onChangeHeightDoor} value={this.state.height_door} />
+                                    </div>
+                                    :
+                                    ''
+                                }
+                            </div>
                         </div>
-                    </div>
 
                         <div className='frames'>
 
                             <div className='markup-width'>
-
-
-{(this.state.frame__1__wind?this.state.frame__1__width:0) + (this.state.frame__2__wind?this.state.frame__2__width:0) + (this.state.frame__3__wind?this.state.frame__3__width:0)}
-
-                                <input type='text' onChange={this.onChangeWidth} defaultValue={
-                                    (this.state.frame__1__wind?this.state.frame__1__width:0) +
-                                    (this.state.frame__2__wind?this.state.frame__2__width:0) +
-                                    (this.state.frame__3__wind?this.state.frame__3__width:0)
-                                } />
-
+                                <input type='text' onChange={this.onChangeWidth} value={this.state.width} />
                             </div>
 
                             <div className='frames__cont'>
@@ -158,38 +149,50 @@ class App extends Component {
                             </div>
                         }
 
+                        <div className='result'>
+                            Общая ширина: {this.state.width} <br/>
+                            Общая высота: {this.state.height} <br/>
+                            Высота окна: {this.state.height_wind} <br/>
+                            Высота двери: {this.state.height_door} <br/><br/>
 
-                        {/*
+                            Первая створка: <br/>
+                            — Ширина створки: {this.state.frame__1__wind?this.state.frame__1__width:'нет'}<br/>
+                            — Дверь: {this.state.frame__1__door?'да':'нет'} <br/>
+                            — Горизонтальное открытие:
+                                                    {this.state.frame__1__open_horizontal===0 && 'нет'}
+                                                    {this.state.frame__1__open_horizontal===1 && 'вправо'}
+                                                    {this.state.frame__1__open_horizontal===2 && 'влево'} <br/>
+                            — Вертикальное открытие: {this.state.frame__1__open_vertical?'да':'нет'} <br/>
+                            — Москитная сетка: {this.state.frame__1__mosquito?'да':'нет'} <br/>
+                            <br/><br/>
 
-                            { this.state.winds >= 3 && <Frame3 context={context} /> }
+                            Вторая створка: <br/>
+                            — Ширина створки: {this.state.frame__2__wind?this.state.frame__2__width:'нет'}<br/>
+                            — Дверь: {this.state.frame__2__door?'да':'нет'} <br/>
+                            — Горизонтальное открытие:
+                                                    {this.state.frame__2__open_horizontal===0 && 'нет'}
+                                                    {this.state.frame__2__open_horizontal===1 && 'вправо'}
+                                                    {this.state.frame__2__open_horizontal===2 && 'влево'} <br/>
+                            — Вертикальное открытие: {this.state.frame__2__open_vertical?'да':'нет'} <br/>
+                            — Москитная сетка: {this.state.frame__2__mosquito?'да':'нет'} <br/>
+                            <br/><br/>
 
-
-                        <div className='frames__frame window'>
-                            <div className='frames__t'>
-                                <AddTop context={context} />
-                            </div>
-                            <div className='frames__b'>
-                                <AddBottom context={context} />
-                            </div>
+                            Третья створка: <br/>
+                            — Ширина створки: {this.state.frame__3__wind?this.state.frame__3__width:'нет'}<br/>
+                            — Дверь: {this.state.frame__3__door?'да':'нет'} <br/>
+                            — Горизонтальное открытие:
+                                                    {this.state.frame__3__open_horizontal===0 && 'нет'}
+                                                    {this.state.frame__3__open_horizontal===1 && 'вправо'}
+                                                    {this.state.frame__3__open_horizontal===2 && 'влево'} <br/>
+                            — Вертикальное открытие: {this.state.frame__3__open_vertical?'да':'нет'} <br/>
+                            — Москитная сетка: {this.state.frame__3__mosquito?'да':'нет'}
                         </div>
-                        */}
-
-
-                        {/*<div className='frames'>
-                            <div className='frames__frame door'>
-                                <div className='frames__t'>w__t</div>
-                                <div className='frames__b'>w__b</div>
-                            </div>
-                            <div className='frames__frame window'>
-                                <div className='frames__t'>w__t</div>
-                                <div className='frames__b'>w__b</div>
-                            </div>
-                        </div>*/}
 
                     </div>
                     <pre>
                         {JSON.stringify(this.state, "", 4)}
                     </pre>
+
                 </div>
             )}</Context.Consumer>
             </Context.Provider>

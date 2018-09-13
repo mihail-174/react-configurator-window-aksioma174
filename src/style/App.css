@@ -1,16 +1,37 @@
+.root > div {
+    display: flex;
+}
 .App {
     position: relative;
     display: flex;
     flex-wrap: wrap;
     padding: 0;
 }
-input {
-    width: 50px;
+input[type='text'] {
+    width: 100px;
     text-align: center;
+    padding: 5px 0;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+    font-weight: 700;
+    font-family: 'Arial';
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+input[type='checkbox'] {
     padding: 0;
+    margin: 0;
+}
+input[type='radio'] {
+    padding: 0;
+    margin: 0;
 }
 
-
+.result {
+    background-color: whitesmoke;
+    border-radius: 5px;
+    padding: 10px;
+}
 
 
 /* .size-left {
@@ -48,16 +69,24 @@ input {
 } */
 .del {
     background-color: red;
-    background: url(https://aksioma174.ru/sites/all/themes/axioma/images/wind/minus.png) 0 0 no-repeat;
+    background: url(/img/del.png) 0 0 no-repeat;
     width: 49px;
     height: 49px;
     cursor: pointer;
 }
 .add {
     background-color: orange;
-    background: url(https://aksioma174.ru/sites/all/themes/axioma/images/wind/plus.png) 0 0 no-repeat;
+    background: url(/img/add.png) 0 0 no-repeat;
     width: 49px;
     height: 49px;
+    cursor: pointer;
+}
+.settings {
+    background-color: purple;
+    background: url(/img/settings.png) 0 0 no-repeat;
+    width: 49px;
+    height: 49px;
+    margin-top: 5px;
     cursor: pointer;
 }
 
@@ -68,8 +97,8 @@ input {
     display: flex;
 }
 .markup-width {
-    background: url(https://aksioma174.ru/sites/all/themes/axioma/images/wind/mert1.png) repeat-x 0 100%;
-    height: 40px;
+    background: url(/img/scale.png) repeat-x 0 100%;
+    height: 50px;
     text-align: center;
     margin-bottom: 10px;
 }
@@ -96,6 +125,7 @@ input {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
 .frames__b {
     /* border: 1px solid; */
@@ -107,15 +137,15 @@ input {
 
 .frames__frame.window .frames__t {
     background-color: blue;
-    background: url(https://aksioma174.ru/sites/all/themes/axioma/images/wind/wnd.jpg) 0 0 no-repeat;
+    background: url(/img/wind.jpg) 0 0 no-repeat;
 }
 .frames__frame.door .frames__t {
     background-color: blue;
-    background: url(https://aksioma174.ru/sites/all/themes/axioma/images/wind/balcony_door.jpg) 0 0 no-repeat;
+    background: url(/img/door.jpg) 0 0 no-repeat;
 }
 .frames__frame.door .frames__b {
     background-color: green;
-    background: url(https://aksioma174.ru/sites/all/themes/axioma/images/wind/balcony_door.jpg) 0 -272px no-repeat;
+    background: url(/img/door.jpg) 0 -272px no-repeat;
 }
 
 .action {
@@ -137,7 +167,7 @@ input {
 
 .markup-height {
     display: flex;
-    top: 89px;
+    top: 99px;
     height: 100%;
     /* flex-direction: column; */
     /* background-color: gray; */
@@ -146,7 +176,7 @@ input {
 .markup-height .l {
 	display: flex;
 	align-items: center;
-    background: url(https://aksioma174.ru/sites/all/themes/axioma/images/wind/mert2.png) repeat-y 100% 0;
+    background: url(/img/scale2.png) repeat-y 100% 0;
     margin-right: 10px;
 }
 .markup-height .t {
@@ -164,4 +194,97 @@ input {
 }
 .markup-height input {
     transform: rotate(-90deg);
+}
+
+.parameters {
+	background-color: #fff;
+	position: absolute;
+	top: 21px;
+	left: 21px;
+	right: 21px;
+	bottom: 24px;
+    padding: 10px;
+    font-size: 14px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+}
+.parameters.active {
+    opacity: 1;
+    visibility: visible;
+}
+.parameters__close {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 20px;
+	height: 20px;
+    cursor: pointer;
+    z-index: 1;
+}
+.parameters__close::before,
+.parameters__close::after {
+	content: '';
+	position: absolute;
+	top: 0;
+    left: 0;
+	right: 0;
+    bottom: 0;
+	height: 2px;
+	width: 15px;
+    margin: auto;
+	background-color: #be5a0f;
+    z-index: 1;
+}
+.parameters__close::before {
+    transform: rotate(45deg);
+}
+.parameters__close::after {
+    transform: rotate(-45deg);
+}
+.parameters__title {
+	font-weight: 700;
+	color: #be5a0f;
+    margin-bottom: 20px;
+}
+.parameters__field {
+    margin-bottom: 10px;
+}
+.parameters__cont {
+    display: flex;
+}
+.parameters__label {
+    margin-bottom: 3px;
+}
+.parameters__item {
+    margin-right: 2px;
+    width: 24px;
+    height: 34px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.parameters__item:last-child {
+    margin-right: 0;
+}
+.parameters__item:hover {
+    border-color: rgba(245, 160, 35, 0.5);
+}
+.parameters__item.active {
+    border-color: #f5a023;
+}
+.parameters__item_none {
+    background: url(/img/none.png) 0 0 no-repeat;
+}
+.parameters__item_right {
+    background: url(/img/right.png) 0 0 no-repeat;
+}
+.parameters__item_left {
+    background: url(/img/left.png) 0 0 no-repeat;
+}
+.parameters__item_top {
+    background: url(/img/top.png) 0 0 no-repeat;
+}
+.parameters__input {
+    display: none;
 }
