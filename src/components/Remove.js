@@ -12,8 +12,9 @@ export default class Remove extends Component {
         context.methods.setAppState({
             winds: state.winds-1,
             width: state.width - state['frame__' + this.props.num + '__width'],
-            ['frame__'+this.props.num+'__wind']: false,
-            ['frame__'+this.props.num+'__door']: false
+            ['frame__'+this.props.num+'__type']: 'window',
+            ['frame__'+this.props.num]: false,
+            height: state.height - state.height_door
         });
         if ( e.currentTarget.classList.contains('add') ) {
             e.currentTarget.parentNode.parentNode.classList.remove('window');

@@ -38,9 +38,22 @@ export default class Parameters extends Component {
             el.classList.remove('active');
         });
         e.currentTarget.parentNode.classList.add('active');
-
+        let open='нет';
+        switch ( parseInt(e.currentTarget.getAttribute('data-index'), 0) ) {
+            case 0:
+                open='нет';
+                break;
+            case 1:
+                open='вправо';
+                break;
+            case 2:
+                open='влево';
+                break;
+            default:
+        }
         context.methods.setAppState({
-            ['frame__' + this.props.num + '__open_horizontal']: parseInt(e.currentTarget.getAttribute('data-index'), 0)
+            ['frame__' + this.props.num + '__open_horizontal']: open
+            // ['frame__' + this.props.num + '__open_horizontal']: parseInt(e.currentTarget.getAttribute('data-index'), 0)
         });
     }
     verticalClick(e) {

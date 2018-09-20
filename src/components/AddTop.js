@@ -12,7 +12,8 @@ export default class AddTop extends Component {
         context.methods.setAppState({
             winds: state.winds+1,
             width: state.width + state['frame__' + this.props.num + '__width'],
-            ['frame__'+this.props.num+'__wind']: true
+            ['frame__'+this.props.num]: true,
+            ['frame__'+this.props.num+'__type']: 'window'
         });
     }
     render() {

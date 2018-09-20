@@ -8,9 +8,9 @@ export default class RemoveBottom extends Component {
     click(e) {
         const {context} = this.props,
                 state = context.state;
-                
+
         context.methods.setAppState({
-            ['frame__' + this.props.num + '__door']: false,
+            ['frame__' + this.props.num+'__type']: 'window',
             height: state.height - state.height_door
         });
 

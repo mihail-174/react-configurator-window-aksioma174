@@ -13,13 +13,18 @@ export default class AddBottom extends Component {
             item.classList.remove('door');
             context.methods.setAppState({
                 height: state.height_wind + state.height_door,
-                frame__1__door: false,
-                frame__2__door: false,
-                frame__3__door: false
+                frame__1__type: 'window',
+                frame__2__type: 'window',
+                frame__3__type: 'window',
+                // ['frame__'+this.props.num+'__height_door']: state.height_door,
+                // frame__1__door: false,
+                // frame__2__door: false,
+                // frame__3__door: false
             });
         });
         context.methods.setAppState({
-            ['frame__'+this.props.num+'__door']: true
+            // ['frame__'+this.props.num+'__door']: true,
+            ['frame__'+this.props.num+'__type']: 'door'
         });
         e.currentTarget.parentNode.parentNode.classList.add('door');
     }
