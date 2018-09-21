@@ -74,7 +74,7 @@ input[type='text']:focus:-moz-placeholder           {opacity: 0; transition: opa
 input[type='text']:focus:-ms-input-placeholder      {opacity: 0; transition: opacity 0.3s ease;}
 textarea {
     width: 100%;
-    min-height: 200px;
+    min-height: 150px;
 }
 input[type='checkbox'] {
     padding: 0;

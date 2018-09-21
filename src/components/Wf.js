@@ -33,11 +33,9 @@ export default class Wf extends Component {
               <div className='wf__field wf__calculated'>
                   <input type='text' name='phone' value={'Общая ширина: ' + state.width} />
                   <input type='text' name='phone' value={'Общая высота: ' + state.height} />
-                  <input type='text' name='phone' value={'Высота окна: ' + state.height_wind} />
-                  <input type='text' name='phone' value={'Высота двери: ' + state.height_door} />
-                  {state.frame__1__wind && <textarea name='frame1' value={`Первая створка: \n— Ширина створки: ${state.frame__1__width} \n— Дверь: ${state.frame__1__door?'да':'нет'} \n— Горизонтальное открытие: ${state.frame__1__open_horizontal}`} />}
-                  {state.frame__2__wind && <textarea name='frame1' value={`Вторая створка: \n— Ширина створки: ${state.frame__2__width} \n— Дверь: ${state.frame__2__door?'да':'нет'} \n— Горизонтальное открытие: ${state.frame__2__open_horizontal}`} />}
-                  {state.frame__3__wind && <textarea name='frame1' value={`Третья створка: \n— Ширина створки: ${state.frame__3__width} \n— Дверь: ${state.frame__3__door?'да':'нет'} \n— Горизонтальное открытие: ${state.frame__3__open_horizontal}`} />}
+                  {state.frame__1 && <textarea name='frame1' value={`Первая створка: \n— Ширина створки: ${state.frame__1__width} \n— Дверь: ${state.frame__1__door?'да':'нет'} \n— Горизонтальное открытие: ${state.frame__1__open_horizontal}`} />}
+                  {state.frame__2 && <textarea name='frame1' value={`Вторая створка: \n— Ширина створки: ${state.frame__2__width} \n— Дверь: ${state.frame__2__door?'да':'нет'} \n— Горизонтальное открытие: ${state.frame__2__open_horizontal}`} />}
+                  {state.frame__3 && <textarea name='frame1' value={`Третья створка: \n— Ширина створки: ${state.frame__3__width} \n— Дверь: ${state.frame__3__door?'да':'нет'} \n— Горизонтальное открытие: ${state.frame__3__open_horizontal}`} />}
 
               </div>
               <input type='hidden' name='cost' value='' />

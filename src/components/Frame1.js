@@ -16,10 +16,10 @@ export default class Frame1 extends Component {
 
         let width1, width2, width3 = 0;
         width1 = e.currentTarget.value;
-        if ( state.frame__2__wind ) {
+        if ( state.frame__2 ) {
             width2 = state.frame__2__width;
         }
-        if ( state.frame__3__wind ) {
+        if ( state.frame__3 ) {
             width3 = state.frame__3__width;
         }
         context.methods.setAppState({

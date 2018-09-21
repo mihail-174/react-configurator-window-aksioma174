@@ -15,10 +15,10 @@ export default class Frame3 extends Component {
                 state = context.state;
 
         let width1, width2, width3 = 0;
-        if ( state.frame__1__wind ) {
+        if ( state.frame__1 ) {
             width1 = state.frame__1__width;
         }
-        if ( state.frame__2__wind ) {
+        if ( state.frame__2 ) {
             width2 = state.frame__2__width;
         }
         width3 = e.currentTarget.value;
