@@ -17,9 +17,6 @@ let initialState = {
     frame__1: true,
     frame__1__type: 'window',
     frame__1__width: 650,
-    // frame__1__height_door: 0,
-    // frame__1__wind: true,
-    // frame__1__door: false,
     frame__1__open_horizontal: 'нет',
     frame__1__open_vertical: false,
     frame__1__mosquito: false,
@@ -27,9 +24,6 @@ let initialState = {
     frame__2: true,
     frame__2__type: 'window',
     frame__2__width: 650,
-    // frame__2__height_door: 0,
-    // frame__2__wind: true,
-    // frame__2__door: false,
     frame__2__open_horizontal: 'нет',
     frame__2__open_vertical: false,
     frame__2__mosquito: false,
@@ -37,9 +31,6 @@ let initialState = {
     frame__3: false,
     frame__3__type: 'window',
     frame__3__width: 650,
-    // frame__3__height_door: 0,
-    // frame__3__wind: false,
-    // frame__3__door: false,
     frame__3__open_horizontal: 'нет',
     frame__3__open_vertical: false,
     frame__3__mosquito: false,
@@ -165,58 +156,11 @@ class App extends Component {
 
                     <Modal context={context} />
 
-                    {
+                    {/*
                         <pre>
                         {JSON.stringify(this.state, "", 4)}
                         </pre>
-                    }
-
-
-
-                    <div className='result'>
-                        <div className='result__frame'>
-                            Общая ширина: {this.state.width} <br/>
-                            Общая высота: {this.state.height} <br/>
-                        </div>
-
-                        <div className='result__frame'>
-                            Cтворка 1: <br/>
-                            — Тип: {this.state.frame__1__type==='window'?'окно':'дверь'}<br/>
-                            — Ширина: {this.state.frame__1?this.state.frame__1__width:'0'}<br/>
-                            — Высота: {this.state.frame__1__type==='door'?this.state.height_wind + this.state.height_door:this.state.height_wind} <br/>
-                            — Высота окна: {this.state.height_wind} <br/>
-                            — Высота двери: {this.state.frame__1__type==='door'?this.state.height_door:'0'} <br/>
-                            — Горизонтальное открытие: {this.state.frame__1__open_horizontal} <br/>
-                            — Вертикальное открытие: {this.state.frame__1__open_vertical?'да':'нет'} <br/>
-                            — Москитная сетка: {this.state.frame__1__mosquito?'да':'нет'} <br/>
-                            <br/><br/>
-                        </div>
-
-                        <div className='result__frame'>
-                            Cтворка 2: <br/>
-                            — Тип: {this.state.frame__2__type==='window'?'окно':'дверь'}<br/>
-                            — Ширина: {this.state.frame__2?this.state.frame__2__width:'0'}<br/>
-                            — Высота: {this.state.frame__2__type==='door'?this.state.height_wind + this.state.height_door:this.state.height_wind} <br/>
-                            — Высота окна: {this.state.height_wind} <br/>
-                            — Высота двери: {this.state.frame__2__type==='door'?this.state.height_door:'0'} <br/>
-                            — Горизонтальное открытие: {this.state.frame__2__open_horizontal} <br/>
-                            — Вертикальное открытие: {this.state.frame__2__open_vertical?'да':'нет'} <br/>
-                            — Москитная сетка: {this.state.frame__2__mosquito?'да':'нет'} <br/>
-                            <br/><br/>
-                        </div>
-
-                        <div className='result__frame'>
-                            Cтворка 3: <br/>
-                            — Тип: {this.state.frame__3__type==='window'?'окно':'дверь'}<br/>
-                            — Ширина: {this.state.frame__3?this.state.frame__3__width:'0'}<br/>
-                            — Высота: {this.state.frame__3__type==='door'?this.state.height_wind + this.state.height_door:this.state.height_wind} <br/>
-                            — Высота окна: {this.state.height_wind} <br/>
-                            — Высота двери: {this.state.frame__3__type==='door'?this.state.height_door:'0'} <br/>
-                            — Горизонтальное открытие: {this.state.frame__3__open_horizontal} <br/>
-                            — Вертикальное открытие: {this.state.frame__3__open_vertical?'да':'нет'} <br/>
-                            — Москитная сетка: {this.state.frame__3__mosquito?'да':'нет'}
-                        </div>
-                    </div>
+                    */}
 
                 </div>
             )}</Context.Consumer>
@@ -233,38 +177,3 @@ class App extends Component {
 }
 
 export default App;
-
-
-/*
-Створка 1:
-- тип: окно
-- ширина: 650
-- высота: 1400
-- горизонтальное открытие: нет
-- вертикальное открытие: нет
-- москитная сетка: нет
-
-Створка 2:
-- тип: окно
-- ширина: 650
-- высота: 1400
-- горизонтальное открытие: нет
-- вертикальное открытие: нет
-- москитная сетка: нет
-________________________________________
-Створка 1:
-- тип: окно
-- ширина: 650
-- высота: 1400
-- горизонтальное открытие: нет
-- вертикальное открытие: нет
-- москитная сетка: нет
-
-Створка 2:
-- тип: дверь
-- ширина: 650
-- высота: 2200 [окно:1400, дверь: 800]
-- горизонтальное открытие: вправо
-- вертикальное открытие: нет
-- москитная сетка: нет
-*/

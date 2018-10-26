@@ -5,18 +5,6 @@ export default class Wf extends Component {
     const {context} = this.props,
           state = context.state;
 
-    // const list = Object.keys(state).map((field, key) => {
-    //     return (
-    //         <div key={key}>{field}</div>
-    //     )
-    // });
-
-    // const list = Object.keys(state).map((field, key) => {
-    //     return (
-    //         <div key={key}>{state[field].frame__1__width}</div>
-    //     )
-    // });
-
     return (
       <div className='wf wf1'>
         <div className='wf__message'></div>
@@ -31,18 +19,17 @@ export default class Wf extends Component {
                 <input required type='text' name='phone' placeholder='Телефон'/>
               </div>
               <div className='wf__field wf__calculated'>
-                  <input type='text' name='phone' value={'Общая ширина: ' + state.width} />
-                  <input type='text' name='phone' value={'Общая высота: ' + state.height} />
-                  {state.frame__1 && <textarea name='frame1' value={`Первая створка: \n— Ширина створки: ${state.frame__1__width} \n— Дверь: ${state.frame__1__door?'да':'нет'} \n— Горизонтальное открытие: ${state.frame__1__open_horizontal}`} />}
-                  {state.frame__2 && <textarea name='frame1' value={`Вторая створка: \n— Ширина створки: ${state.frame__2__width} \n— Дверь: ${state.frame__2__door?'да':'нет'} \n— Горизонтальное открытие: ${state.frame__2__open_horizontal}`} />}
-                  {state.frame__3 && <textarea name='frame1' value={`Третья створка: \n— Ширина створки: ${state.frame__3__width} \n— Дверь: ${state.frame__3__door?'да':'нет'} \n— Горизонтальное открытие: ${state.frame__3__open_horizontal}`} />}
-
+                  <input type='hidden' name='type' value={state.frame__1__type==='door'||state.frame__2__type==='door'||state.frame__3__type==='door'?'Балкон':'Окно'} readOnly />
+                  <input type='hidden' name='width' value={state.width} readOnly />
+                  <input type='hidden' name='height' value={state.height} readOnly />
+                  {state.frame__1 && <textarea hidden="hidden" name='frame1' value={`Первая створка: \n— Ширина створки: ${state.frame__1__width} \n— Дверь: ${state.frame__1__type==='door'?'да':'нет'} \n— Горизонтальное открытие: ${state.frame__1__open_horizontal} \n— Вертикальное открытие: ${state.frame__1__open_vertical?'да':'нет'} \n— Москитная сетка: ${state.frame__1__mosquito?'да':'нет'}`} readOnly />}
+                  {state.frame__2 && <textarea hidden="hidden" name='frame1' value={`Вторая створка: \n— Ширина створки: ${state.frame__2__width} \n— Дверь: ${state.frame__2__type==='door'?'да':'нет'} \n— Горизонтальное открытие: ${state.frame__2__open_horizontal} \n— Вертикальное открытие: ${state.frame__2__open_vertical?'да':'нет'} \n— Москитная сетка: ${state.frame__2__mosquito?'да':'нет'}`} readOnly />}
+                  {state.frame__3 && <textarea hidden="hidden" name='frame1' value={`Третья створка: \n— Ширина створки: ${state.frame__3__width} \n— Дверь: ${state.frame__3__type==='door'?'да':'нет'} \n— Горизонтальное открытие: ${state.frame__3__open_horizontal} \n— Вертикальное открытие: ${state.frame__3__open_vertical?'да':'нет'} \n— Москитная сетка: ${state.frame__3__mosquito?'да':'нет'}`} readOnly />}
               </div>
-              <input type='hidden' name='cost' value='' />
             </div>
             <div className='wf__privacy'>Отправляя данную форму, я подтверждаю,что ознакомлен с <a href='/privacy'>Политикой конфиденциальности</a>, и согласен на хранение и обработку предоставленных персональных данных.</div>
             <div className='wf__action'>
-              <input type="submit" name='submit' value="Отправить"/>
+              <input type="submit" name='submit' defaultValue="Отправить"/>
             </div>
           </div>
         </form>
@@ -50,9 +37,3 @@ export default class Wf extends Component {
     )
   }
 }
-
-/*
-
-
-*/
-// <textarea name='calculated' value={`Общая ширина: ${state.width} \nОбщая высота: ${state.height} \nВысота окна: ${state.height_wind} \nВысота двери: ${state.height_door} \n\nПервая створка: \n— Ширина створки: ${state.frame__1__wind?state.frame__1__width:"нет"}`} />

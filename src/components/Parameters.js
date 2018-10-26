@@ -12,27 +12,14 @@ export default class Parameters extends Component {
         e.currentTarget.parentNode.classList.remove('active');
     }
     mosquitoClick(e) {
-        const {context} = this.props,
-                state = context.state;
-
-        // console.clear();
-        // console.log( e.currentTarget );
-        // console.log( e.currentTarget.checked );
-        // console.log( this.props.num );
-
+        const {context} = this.props;
+        e.currentTarget.parentNode.classList.toggle('active');
         context.methods.setAppState({
             ['frame__' + this.props.num + '__mosquito']: e.currentTarget.checked
         });
     }
     horizontalClick(e) {
-        const {context} = this.props,
-                state = context.state;
-
-        // console.clear();
-        // console.log( e.currentTarget );
-        // console.log( e.currentTarget.getAttribute('data-index') );
-        // console.log( this.props.num );
-
+        const {context} = this.props;
         let list = e.currentTarget.parentNode.parentNode.querySelectorAll(".parameters__item");
         [].forEach.call(list, function(el) {
             el.classList.remove('active');
@@ -53,31 +40,14 @@ export default class Parameters extends Component {
         }
         context.methods.setAppState({
             ['frame__' + this.props.num + '__open_horizontal']: open
-            // ['frame__' + this.props.num + '__open_horizontal']: parseInt(e.currentTarget.getAttribute('data-index'), 0)
         });
     }
     verticalClick(e) {
-        const {context} = this.props,
-                state = context.state;
-
-        // console.clear();
-        // console.log( e.currentTarget );
-        // console.log( e.currentTarget.getAttribute('data-index') );
-        // console.log( this.props.num );
-
+        const {context} = this.props;
+        e.currentTarget.parentNode.classList.toggle('active');
         context.methods.setAppState({
             ['frame__' + this.props.num + '__open_vertical']: e.currentTarget.checked
         });
-
-        // let list = e.currentTarget.parentNode.parentNode.querySelectorAll(".parameters__item");
-        // [].forEach.call(list, function(el) {
-        //     el.classList.remove('active');
-        // });
-        // e.currentTarget.parentNode.classList.add('active');
-        //
-        // context.methods.setAppState({
-        //     ['frame__' + this.props.num + '__open_vertical']: parseInt(e.currentTarget.getAttribute('data-index'), 0)
-        // });
     }
     render() {
         return (
@@ -101,28 +71,20 @@ export default class Parameters extends Component {
                 <div className='parameters__field parameters__field_vertical'>
                     <div className='parameters__label'>Верт. открытие:</div>
                     <div className='parameters__cont'>
-                        <input onChange={this.verticalClick} defaultChecked="" type="checkbox" />
+                        <label className='parameters__item parameters__item_top' htmlFor={'field_vertical-1-frame-' + this.props.num}>
+                            <input onChange={this.verticalClick} className='parameters__input' id={'field_vertical-1-frame-' + this.props.num} data-index='0' defaultChecked="" type="checkbox" />
+                        </label>
                     </div>
                 </div>
                 <div className='parameters__field parameters__field_mosquito'>
                     <div className='parameters__label'>Москитная сетка:</div>
                     <div className='parameters__cont'>
-                        <input onChange={this.mosquitoClick} defaultChecked="" type="checkbox" />
+                        <label className='parameters__item parameters__item_mosquito' htmlFor={'field_mosquito-1-frame-' + this.props.num}>
+                            <input onChange={this.mosquitoClick} className='parameters__input' id={'field_mosquito-1-frame-' + this.props.num} data-index='0' defaultChecked="" type="checkbox" />
+                        </label>
                     </div>
                 </div>
             </div>
         )
     }
 }
-
-
-/*
-
-<label className='parameters__item parameters__item_none active' htmlFor={'radio-g-1-frame-' + this.props.num}>
-    <input onChange={this.verticalClick} className='parameters__input' name={'radio-vertical-frame-' + this.props.num} id={'radio-g-1-frame-' + this.props.num} defaultChecked='true' data-index='0' type="radio" />
-</label>
-<label className='parameters__item parameters__item_top' htmlFor={'radio-g-2-frame-' + this.props.num}>
-    <input onChange={this.verticalClick} className='parameters__input' name={'radio-vertical-frame-' + this.props.num} id={'radio-g-2-frame-' + this.props.num} defaultChecked='' data-index='1' type="radio" />
-</label>
-
-*/
