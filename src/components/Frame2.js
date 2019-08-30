@@ -11,21 +11,28 @@ export default class Frame2 extends Component {
         this.onChangeWidth = this.onChangeWidth.bind(this);
     }
     onChangeWidth(e) {
-        const {context} = this.props,
-                state = context.state;
+        const {context} = this.props;
+        const state = context.state;
 
-        let width1, width2, width3 = 0;
-        if ( state.frame__1 ) {
-            width1 = state.frame__1__width;
+        if ( state.winds === 2 ) {
+            context.methods.setAppState({
+                frame__1__width: state.width - e.currentTarget.value,
+                frame__2__width: e.currentTarget.value
+            });
         }
-        width2 = e.currentTarget.value;
-        if ( state.frame__3 ) {
-            width3 = state.frame__3__width;
-        }
-        context.methods.setAppState({
-            width: parseInt( width1, 0 ) + parseInt( width2, 0 ) + parseInt( width3, 0 ),
-            frame__2__width: parseInt( e.currentTarget.value, 0 )
-        });
+
+        // let width1, width2, width3 = 0;
+        // if ( state.frame__1 ) {
+        //     width1 = state.frame__1__width;
+        // }
+        // width2 = e.currentTarget.value;
+        // if ( state.frame__3 ) {
+        //     width3 = state.frame__3__width;
+        // }
+        // context.methods.setAppState({
+        //     width: parseInt( width1, 0 ) + parseInt( width2, 0 ) + parseInt( width3, 0 ),
+        //     frame__2__width: parseInt( e.currentTarget.value, 0 )
+        // });
     }
     render() {
         const {context} = this.props,

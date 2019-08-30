@@ -9,6 +9,10 @@ export default class AddBottom extends Component {
         const {context} = this.props,
                 state = context.state;
 
+        if ( state.frame__1__type==='window' && state.frame__2__type==='window' && state.frame__3__type==='window' ) {
+            document.querySelector('.markup-height .t input').removeAttribute('disabled');
+        }
+
         document.querySelectorAll('.frames__frame').forEach(function(item, i, arr) {
             item.classList.remove('door');
             context.methods.setAppState({
@@ -23,7 +27,6 @@ export default class AddBottom extends Component {
             });
         });
         context.methods.setAppState({
-            // ['frame__'+this.props.num+'__door']: true,
             ['frame__'+this.props.num+'__type']: 'door'
         });
         e.currentTarget.parentNode.parentNode.classList.add('door');
