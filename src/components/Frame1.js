@@ -14,12 +14,12 @@ export default class Frame1 extends Component {
         const {context} = this.props;
         const state = context.state;
 
-        if ( state.winds === 2 ) {
-            context.methods.setAppState({
-                frame__1__width: e.currentTarget.value,
-                frame__2__width: state.width - e.currentTarget.value
-            });
-        }
+        // if ( state.winds === 2 ) {
+        //     context.methods.setAppState({
+        //         frame__1__width: e.currentTarget.value,
+        //         frame__2__width: state.width - e.currentTarget.value
+        //     });
+        // }
 
         // let width1, width2, width3 = 0;
         // width1 = e.currentTarget.value;
@@ -29,10 +29,28 @@ export default class Frame1 extends Component {
         // if ( state.frame__3 ) {
         //     width3 = state.frame__3__width;
         // }
+
+        if (  state.winds === 2 ) {
+            context.methods.setAppState({
+                frame__1__width: Math.ceil(e.currentTarget.value),
+                frame__2__width: Math.ceil(state.width - e.currentTarget.value),
+                frame__1__width__change: true
+            });
+        }
+        if (  state.winds === 3 ) {
+            context.methods.setAppState({
+                frame__1__width: Math.ceil(e.currentTarget.value),
+                frame__2__width: Math.ceil((state.width - e.currentTarget.value)/2),
+                frame__3__width: Math.ceil((state.width - e.currentTarget.value)/2)
+            });
+        }
     }
     render() {
         const {context} = this.props,
                 state = context.state;
+        if ( state.winds !== 1 ) {
+            document.querySelector('.frames__frame-1 .frames__w input').removeAttribute('disabled');
+        }
 
         return (
             <div className={ state.frame__1__type==='door' ? 'frames__frame frames__frame-1 door' : 'frames__frame frames__frame-1 window' }>
@@ -62,4 +80,16 @@ export default class Frame1 extends Component {
             </div>
         )
     }
+
+    componentDidMount() {
+        const {context} = this.props;
+        const state = context.state;
+        // if ( state.winds === 1 ) {
+            document.querySelector('.frames__frame-1 .frames__w input').setAttribute('disabled', 'disabled');
+        // }
+    }
+
 }
+
+
+// componentWillUpdate or componentDidUpdate

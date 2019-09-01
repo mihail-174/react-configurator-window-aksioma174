@@ -8,7 +8,7 @@ import './style/App.css';
 const Context = React.createContext()
 
 let initialState = {
-    winds: 2,
+    winds: 1,
     width: 1300,
     height: 1400,
     height_wind: 1400,
@@ -55,17 +55,36 @@ class App extends Component {
         this.openModal = this.openModal.bind(this);
         this.heightFrame = React.createRef();
         this.heightWind = React.createRef();
+        this.widthWind = React.createRef();
     }
     setAppState(newState) {
       this.setState(newState);
     }
     onChangeWidth(e) {
         this.setState({
-            width: parseInt( e.currentTarget.value, 0 ),
-            frame__1__width: Math.ceil(e.currentTarget.value/this.state.winds),
-            frame__2__width: Math.ceil(e.currentTarget.value/this.state.winds),
-            frame__3__width: Math.ceil(e.currentTarget.value/this.state.winds)
+            width: parseInt( e.currentTarget.value, 0 )
+            // frame__1__width: Math.ceil(e.currentTarget.value/this.state.winds),
+            // frame__2__width: Math.ceil(e.currentTarget.value/this.state.winds),
+            // frame__3__width: Math.ceil(e.currentTarget.value/this.state.winds)
         });
+        if (  this.state.winds === 1 ) {
+            this.setState({
+                frame__1__width: parseInt( e.currentTarget.value, 0 )
+            });
+        }
+        if (  this.state.winds === 2 ) {
+            this.setState({
+                frame__1__width: Math.ceil(e.currentTarget.value/this.state.winds),
+                frame__2__width: Math.ceil(e.currentTarget.value/this.state.winds)
+            });
+        }
+        if (  this.state.winds === 3 ) {
+            this.setState({
+                frame__1__width: Math.ceil(e.currentTarget.value/this.state.winds),
+                frame__2__width: Math.ceil(e.currentTarget.value/this.state.winds),
+                frame__3__width: Math.ceil(e.currentTarget.value/this.state.winds)
+            });
+        }
     }
     onChangeHeight(e) {
         // let heightWind = 0,
@@ -142,7 +161,7 @@ class App extends Component {
                         <div className='frames'>
 
                             <div className='markup-width'>
-                                <input type='text' onChange={this.onChangeWidth} value={this.state.width} />
+                                <input ref={this.widthWind} type='text' onChange={this.onChangeWidth} value={this.state.width} />
                             </div>
 
                             <div className='frames__cont'>
@@ -191,8 +210,14 @@ class App extends Component {
         this.setState({
             ...initialState,
             data: this.props.data
-        })
+        });
+        if ( this.state.winds === 1 ) {
+            this.setState({
+                frame__1__width: this.state.width
+            });
+        }
     }
+
 }
 
 export default App;
