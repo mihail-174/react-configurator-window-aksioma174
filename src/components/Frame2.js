@@ -10,30 +10,25 @@ export default class Frame2 extends Component {
         super(props);
         this.onChangeWidth = this.onChangeWidth.bind(this);
     }
+
     onChangeWidth(e) {
         const {context} = this.props;
         const state = context.state;
 
         if ( state.winds === 2 ) {
             context.methods.setAppState({
-                frame__1__width: state.width - e.currentTarget.value,
-                frame__2__width: e.currentTarget.value
+                frame__1__width: Math.ceil(state.width - e.currentTarget.value),
+                frame__2__width: Math.ceil(e.currentTarget.value)
             });
         }
-
-        // let width1, width2, width3 = 0;
-        // if ( state.frame__1 ) {
-        //     width1 = state.frame__1__width;
-        // }
-        // width2 = e.currentTarget.value;
-        // if ( state.frame__3 ) {
-        //     width3 = state.frame__3__width;
-        // }
-        // context.methods.setAppState({
-        //     width: parseInt( width1, 0 ) + parseInt( width2, 0 ) + parseInt( width3, 0 ),
-        //     frame__2__width: parseInt( e.currentTarget.value, 0 )
-        // });
+        if ( state.winds === 3 ) {
+            context.methods.setAppState({
+                frame__2__width: Math.ceil(e.currentTarget.value),
+                frame__3__width: Math.ceil(state.width - state.frame__1__width - e.currentTarget.value)
+            });
+        }
     }
+    
     render() {
         const {context} = this.props,
                 state = context.state;
@@ -66,4 +61,5 @@ export default class Frame2 extends Component {
             </div>
         )
     }
+
 }

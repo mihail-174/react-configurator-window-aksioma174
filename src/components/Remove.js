@@ -5,6 +5,7 @@ export default class Remove extends Component {
         super(props);
         this.click = this.click.bind(this);
     }
+
     click(e) {
         const {context} = this.props,
                 state = context.state;
@@ -17,7 +18,6 @@ export default class Remove extends Component {
         }
         context.methods.setAppState({
             winds: state.winds-1,
-            // width: state.width - state['frame__' + this.props.num + '__width'],
             ['frame__'+this.props.num+'__type']: 'window',
             ['frame__'+this.props.num]: false,
             height: state.height - heightDoor
@@ -40,19 +40,18 @@ export default class Remove extends Component {
             e.currentTarget.classList.remove('add');
             e.currentTarget.classList.add('del');
         }
-
         if ( state.winds-1 === 1 ) {
             document.querySelector('.frames__frame-1 .frames__w input').setAttribute('disabled', 'disabled');
             context.methods.setAppState({
                 frame__1__width: state.width
             });
         }
-
-
     }
+
     render() {
         return (
             <div className='del' onClick={this.click}></div>
         )
     }
+
 }
