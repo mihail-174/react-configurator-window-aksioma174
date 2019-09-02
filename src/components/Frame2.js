@@ -28,7 +28,7 @@ export default class Frame2 extends Component {
             });
         }
     }
-    
+
     render() {
         const {context} = this.props,
                 state = context.state;
@@ -37,6 +37,7 @@ export default class Frame2 extends Component {
             <div className={ state.frame__2__type==='door' ? 'frames__frame frames__frame-2 door' : 'frames__frame frames__frame-2 window' }>
                 <div className='frames__w'>
                     <input type='text' onChange={this.onChangeWidth} value={state.frame__2__width} />
+                    <span class="suffix">мм</span>
                 </div>
                 <div className='frames__t'>
                     {

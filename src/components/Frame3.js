@@ -29,6 +29,7 @@ export default class Frame3 extends Component {
             <div className={ state.frame__3__type==='door' ? 'frames__frame frames__frame-3 door' : 'frames__frame frames__frame-3 window' }>
                 <div className='frames__w'>
                     <input type='text' onChange={this.onChangeWidth} value={state.frame__3__width} />
+                    <span class="suffix">мм</span>
                 </div>
                 <div className='frames__t'>
                     <Remove num={this.props.num} context={context} />

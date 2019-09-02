@@ -40,6 +40,7 @@ export default class Frame1 extends Component {
             <div className={ state.frame__1__type==='door' ? 'frames__frame frames__frame-1 door' : 'frames__frame frames__frame-1 window' }>
                 <div className='frames__w'>
                     <input type='text' onChange={this.onChangeWidth} value={state.frame__1__width} />
+                    <span class="suffix">мм</span>
                 </div>
                 <div className='frames__t'>
                     {
