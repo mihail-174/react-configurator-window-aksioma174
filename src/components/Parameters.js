@@ -25,16 +25,16 @@ export default class Parameters extends Component {
             el.classList.remove('active');
         });
         e.currentTarget.parentNode.classList.add('active');
-        let open='нет';
+        let open='';
         switch ( parseInt(e.currentTarget.getAttribute('data-index'), 0) ) {
             case 0:
-                open='нет';
+                open='none';
                 break;
             case 1:
-                open='вправо';
+                open='right';
                 break;
             case 2:
-                open='влево';
+                open='left';
                 break;
             default:
         }
@@ -50,6 +50,8 @@ export default class Parameters extends Component {
         });
     }
     render() {
+        const {context} = this.props;
+        const state = context.state;
         return (
             <div className='parameters'>
                 <div className='parameters__close' onClick={this.close}></div>
@@ -68,14 +70,18 @@ export default class Parameters extends Component {
                         </label>
                     </div>
                 </div>
-                <div className='parameters__field parameters__field_vertical'>
-                    <div className='parameters__label'>Верт. открытие:</div>
-                    <div className='parameters__cont'>
-                        <label className='parameters__item parameters__item_top' htmlFor={'field_vertical-1-frame-' + this.props.num}>
-                            <input onChange={this.verticalClick} className='parameters__input' id={'field_vertical-1-frame-' + this.props.num} data-index='0' defaultChecked="" type="checkbox" />
-                        </label>
+                {
+                    state.frame__1__open_horizontal !== 'none'
+                    &&
+                    <div className='parameters__field parameters__field_vertical'>
+                        <div className='parameters__label'>Верт. открытие:</div>
+                        <div className='parameters__cont'>
+                            <label className='parameters__item parameters__item_top' htmlFor={'field_vertical-1-frame-' + this.props.num}>
+                                <input onChange={this.verticalClick} className='parameters__input' id={'field_vertical-1-frame-' + this.props.num} data-index='0' defaultChecked="" type="checkbox" />
+                            </label>
+                        </div>
                     </div>
-                </div>
+                }
                 <div className='parameters__field parameters__field_mosquito'>
                     <div className='parameters__label'>Москитная сетка:</div>
                     <div className='parameters__cont'>

@@ -17,21 +17,21 @@ let initialState = {
     frame__1: true,
     frame__1__type: 'window',
     frame__1__width: 650,
-    frame__1__open_horizontal: 'нет',
+    frame__1__open_horizontal: 'none',
     frame__1__open_vertical: false,
     frame__1__mosquito: false,
 
     frame__2: true,
     frame__2__type: 'window',
     frame__2__width: 650,
-    frame__2__open_horizontal: 'нет',
+    frame__2__open_horizontal: 'none',
     frame__2__open_vertical: false,
     frame__2__mosquito: false,
 
     frame__3: false,
     frame__3__type: 'window',
     frame__3__width: 650,
-    frame__3__open_horizontal: 'нет',
+    frame__3__open_horizontal: 'none',
     frame__3__open_vertical: false,
     frame__3__mosquito: false,
 
@@ -193,9 +193,9 @@ class App extends Component {
                 </div>
 
                 {
-                    // <pre>
-                    // {JSON.stringify(this.state, "", 4)}
-                    // </pre>
+                    <pre>
+                        {JSON.stringify(this.state, "", 4)}
+                    </pre>
                 }
 
                 </div>
