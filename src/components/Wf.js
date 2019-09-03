@@ -31,16 +31,19 @@ export default class Wf extends Component {
 
     if ( state.winds === 1 ) {
         if ( state.frame__1__type === 'window' ) {
-            type = '\nОдностворчатое окно.';
+            type = '\nОдностворчатое.';
+            if ( state.frame__1__open_horizontal === 'none' && state.frame__1__open_vertical === false ) {
+                type = '\nОдностворчатое. Глухое.';
+            }
+            if ( state.frame__1__open_vertical ) {
+                frame_1_open_vertical = '\nПоворотно-откидная.';
+            }
             switch (state.frame__1__open_horizontal) {
-                case 'none':
-                    frame_1_open_horizontal = '\nГлухое.';
+                case 'left':
+                    frame_1_open_horizontal = '\nОткрывается влево.';
                     break;
                 case 'right':
-                    frame_1_open_horizontal = '\nС открытием влево.';
-                    break;
-                case 'left':
-                    frame_1_open_horizontal = '\nС открытием вправо.';
+                    frame_1_open_horizontal = '\nОткрывается вправо.';
                     break;
                 default:
                     frame_1_open_horizontal = '';
@@ -51,9 +54,6 @@ export default class Wf extends Component {
             } else {
                 frame_1_mosquito = '';
             }
-            if ( state.frame__1__open_vertical ) {
-                frame_1_open_vertical = '\nВертикальное открытие.';
-            }
         }
         if ( state.frame__1__type === 'door' ) {
             type = '\nТип: ' +  'Дверь';
@@ -63,50 +63,64 @@ export default class Wf extends Component {
     }
     if ( state.winds === 2 ) {
         if ( state.frame__1__type === 'window' ) {
-            type = '\nТип: ' +  'Двухстворчатое окно.';
-            // if (state.frame__1__open_horizontal === 'none' && state.frame__2__open_horizontal === 'none') {
-            //     frame_2_open_horizontal = '\nГлухое.';
+
+            if ( state.frame__1__open_horizontal === 'none' && state.frame__2__open_horizontal === 'none' && state.frame__1__open_vertical === false && state.frame__2__open_vertical === false ) {
+                type = '\nДвухстворчатое. Глухое.';
+            }
+            if ( state.frame__1__open_horizontal === 'left' && state.frame__1__open_vertical && state.frame__2__open_horizontal === 'none' ) {
+                type = '\nДвухстворчатое. Поворотно-откридная. Открывается влево.';
+            }
+            if ( state.frame__2__open_horizontal === 'right' && state.frame__2__open_vertical && state.frame__1__open_horizontal === 'none' ) {
+                type = '\nДвухстворчатое. Поворотно-откридная. Открывается вправо.';
+            }
+            if ( state.frame__1__open_horizontal === 'left' && state.frame__1__open_vertical === false && state.frame__2__open_horizontal === 'none' ) {
+                type = '\nДвухстворчатое. Открывается влево.';
+            }
+            if ( state.frame__2__open_horizontal === 'right' && state.frame__2__open_vertical === false && state.frame__1__open_horizontal === 'none' ) {
+                type = '\nДвухстворчатое. Открывается вправо.';
+            }
+
+            // type = '\nТип: ' +  'Двухстворчатое окно.';
+            // switch (state.frame__1__open_horizontal) {
+            //     case 'none':
+            //         frame_1_open_horizontal = '\nЛевая половина: глухая';
+            //         break;
+            //     case 'right':
+            //         frame_1_open_horizontal = '\nЛевая половина: с открытием влево.';
+            //         break;
+            //     case 'left':
+            //         frame_1_open_horizontal = '\nЛевая половина: с открытием вправо.';
+            //         break;
+            //     default:
+            //         frame_1_open_horizontal = '';
+            //         break;
             // }
-            switch (state.frame__1__open_horizontal) {
-                case 'none':
-                    frame_1_open_horizontal = '\nЛевая половина: глухая';
-                    break;
-                case 'right':
-                    frame_1_open_horizontal = '\nЛевая половина: с открытием влево.';
-                    break;
-                case 'left':
-                    frame_1_open_horizontal = '\nЛевая половина: с открытием вправо.';
-                    break;
-                default:
-                    frame_1_open_horizontal = '';
-                    break;
-            }
-            switch (state.frame__2__open_horizontal) {
-                case 'none':
-                    frame_2_open_horizontal = '\nПравая половина: глухая';
-                    break;
-                case 'right':
-                    frame_2_open_horizontal = '\nПравая половина: с открытием влево.';
-                    break;
-                case 'left':
-                    frame_2_open_horizontal = '\nПравая половина: с открытием вправо.';
-                    break;
-                default:
-                    frame_2_open_horizontal = '';
-                    break;
-            }
-            if ( state.frame__1__mosquito ) {
-                frame_1_mosquito = '\nМоскитная сетка для левой створки.';
-            }
-            if ( state.frame__2__mosquito ) {
-                frame_2_mosquito = '\nМоскитная сетка для правой створки.';
-            }
-            if ( state.frame__1__open_vertical ) {
-                frame_1_open_vertical = '\nВертикальное открытие левой створки.';
-            }
-            if ( state.frame__2__open_vertical ) {
-                frame_2_open_vertical = '\nВертикальное открытие правой створки.';
-            }
+            // switch (state.frame__2__open_horizontal) {
+            //     case 'none':
+            //         frame_2_open_horizontal = '\nПравая половина: глухая';
+            //         break;
+            //     case 'right':
+            //         frame_2_open_horizontal = '\nПравая половина: с открытием влево.';
+            //         break;
+            //     case 'left':
+            //         frame_2_open_horizontal = '\nПравая половина: с открытием вправо.';
+            //         break;
+            //     default:
+            //         frame_2_open_horizontal = '';
+            //         break;
+            // }
+            // if ( state.frame__1__mosquito ) {
+            //     frame_1_mosquito = '\nМоскитная сетка для левой створки.';
+            // }
+            // if ( state.frame__2__mosquito ) {
+            //     frame_2_mosquito = '\nМоскитная сетка для правой створки.';
+            // }
+            // if ( state.frame__1__open_vertical ) {
+            //     frame_1_open_vertical = '\nВертикальное открытие левой створки.';
+            // }
+            // if ( state.frame__2__open_vertical ) {
+            //     frame_2_open_vertical = '\nВертикальное открытие правой створки.';
+            // }
         }
         if ( state.frame__1__type === 'door' ) {
             type = '\nТип: ' +  'Двухстворчатый балконный блок. Дверь слева.';
@@ -164,15 +178,15 @@ export default class Wf extends Component {
 
                           <div>{type}</div>
 
+                          <div>{frame_1_open_vertical}</div>
+                          <div>{frame_2_open_vertical}</div>
+
                           <div>{frame_1_open_horizontal}</div>
                           <div>{frame_2_open_horizontal}</div>
 
                           <div>{frame_1_mosquito}</div>
                           <div>{frame_2_mosquito}</div>
 
-                          <div>{frame_1_open_vertical}</div>
-                          <div>{frame_2_open_vertical}</div>
-                          
                           <div>{widthFrame1}</div>
                           <div>{widthFrame2}</div>
                           <div>{widthFrame3}</div>

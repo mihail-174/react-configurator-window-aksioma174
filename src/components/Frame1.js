@@ -32,10 +32,9 @@ export default class Frame1 extends Component {
     render() {
         const {context} = this.props,
                 state = context.state;
-        if ( state.winds !== 1 ) {
+        if ( state.winds === 2  ) {
             document.querySelector('.frames__frame-1 .frames__w input').removeAttribute('disabled');
         }
-
         return (
             <div className={ state.frame__1__type==='door' ? 'frames__frame frames__frame-1 door' : 'frames__frame frames__frame-1 window' }>
                 <div className='frames__w'>

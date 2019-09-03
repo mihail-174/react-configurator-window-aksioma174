@@ -62,26 +62,22 @@ export default class Parameters extends Component {
                         <label className='parameters__item parameters__item_none active' htmlFor={'radio-h-1-frame-' + this.props.num}>
                             <input onChange={this.horizontalClick} className='parameters__input' name={'radio-horizontal-frame-' + this.props.num} data-index='0' id={'radio-h-1-frame-' + this.props.num} defaultChecked='true' type="radio" />
                         </label>
-                        <label className='parameters__item parameters__item_right' htmlFor={'radio-h-2-frame-' + this.props.num}>
-                            <input onChange={this.horizontalClick} className='parameters__input' name={'radio-horizontal-frame-' + this.props.num} data-index='1' id={'radio-h-2-frame-' + this.props.num} defaultChecked='' type="radio" />
-                        </label>
                         <label className='parameters__item parameters__item_left' htmlFor={'radio-h-3-frame-' + this.props.num}>
                             <input onChange={this.horizontalClick} className='parameters__input' name={'radio-horizontal-frame-' + this.props.num} data-index='2' id={'radio-h-3-frame-' + this.props.num} defaultChecked='' type="radio" />
                         </label>
+                        <label className='parameters__item parameters__item_right' htmlFor={'radio-h-2-frame-' + this.props.num}>
+                            <input onChange={this.horizontalClick} className='parameters__input' name={'radio-horizontal-frame-' + this.props.num} data-index='1' id={'radio-h-2-frame-' + this.props.num} defaultChecked='' type="radio" />
+                        </label>
                     </div>
                 </div>
-                {
-                    state.frame__1__open_horizontal !== 'none'
-                    &&
-                    <div className='parameters__field parameters__field_vertical'>
-                        <div className='parameters__label'>Верт. открытие:</div>
-                        <div className='parameters__cont'>
-                            <label className='parameters__item parameters__item_top' htmlFor={'field_vertical-1-frame-' + this.props.num}>
-                                <input onChange={this.verticalClick} className='parameters__input' id={'field_vertical-1-frame-' + this.props.num} data-index='0' defaultChecked="" type="checkbox" />
-                            </label>
-                        </div>
+                <div className='parameters__field parameters__field_vertical'>
+                    <div className='parameters__label'>Верт. открытие:</div>
+                    <div className='parameters__cont'>
+                        <label className='parameters__item parameters__item_top' htmlFor={'field_vertical-1-frame-' + this.props.num}>
+                            <input onChange={this.verticalClick} className='parameters__input' id={'field_vertical-1-frame-' + this.props.num} data-index='0' defaultChecked="" type="checkbox" />
+                        </label>
                     </div>
-                }
+                </div>
                 <div className='parameters__field parameters__field_mosquito'>
                     <div className='parameters__label'>Москитная сетка:</div>
                     <div className='parameters__cont'>
