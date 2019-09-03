@@ -18,7 +18,7 @@ export default class Parameters extends Component {
             ['frame__' + this.props.num + '__mosquito']: e.currentTarget.checked
         });
     }
-    horizontalClick(e) {
+    horizontalClick(e, value) {
         const {context} = this.props;
         let list = e.currentTarget.parentNode.parentNode.querySelectorAll(".parameters__item");
         [].forEach.call(list, function(el) {
@@ -39,7 +39,8 @@ export default class Parameters extends Component {
             default:
         }
         context.methods.setAppState({
-            ['frame__' + this.props.num + '__open_horizontal']: open
+            ['frame__' + this.props.num + '__open_horizontal']: open,
+            ['frame__' + this.props.num + '__open_horizontal__value']: value
         });
     }
     verticalClick(e) {
@@ -59,14 +60,18 @@ export default class Parameters extends Component {
                 <div className='parameters__field parameters__field_horizontal'>
                     <div className='parameters__label'>Гор. открытие:</div>
                     <div className='parameters__cont'>
-                        <label className='parameters__item parameters__item_none active' htmlFor={'radio-h-1-frame-' + this.props.num}>
-                            <input onChange={this.horizontalClick} className='parameters__input' name={'radio-horizontal-frame-' + this.props.num} data-index='0' id={'radio-h-1-frame-' + this.props.num} defaultChecked='true' type="radio" />
-                        </label>
+                        {
+                            state.frame__1__type === 'window'
+                            &&
+                            <label className='parameters__item parameters__item_none active' htmlFor={'radio-h-1-frame-' + this.props.num}>
+                                <input onChange={(e)=>this.horizontalClick(e, 0)} className='parameters__input' name={'radio-horizontal-frame-' + this.props.num} data-index='0' id={'radio-h-1-frame-' + this.props.num} defaultChecked='true' type="radio" />
+                            </label>
+                        }
                         <label className='parameters__item parameters__item_left' htmlFor={'radio-h-3-frame-' + this.props.num}>
-                            <input onChange={this.horizontalClick} className='parameters__input' name={'radio-horizontal-frame-' + this.props.num} data-index='2' id={'radio-h-3-frame-' + this.props.num} defaultChecked='' type="radio" />
+                            <input onChange={(e)=>this.horizontalClick(e, 1)} className='parameters__input' name={'radio-horizontal-frame-' + this.props.num} data-index='2' id={'radio-h-3-frame-' + this.props.num} defaultChecked='' type="radio" />
                         </label>
                         <label className='parameters__item parameters__item_right' htmlFor={'radio-h-2-frame-' + this.props.num}>
-                            <input onChange={this.horizontalClick} className='parameters__input' name={'radio-horizontal-frame-' + this.props.num} data-index='1' id={'radio-h-2-frame-' + this.props.num} defaultChecked='' type="radio" />
+                            <input onChange={(e)=>this.horizontalClick(e, 2)} className='parameters__input' name={'radio-horizontal-frame-' + this.props.num} data-index='1' id={'radio-h-2-frame-' + this.props.num} defaultChecked='' type="radio" />
                         </label>
                     </div>
                 </div>
@@ -78,14 +83,18 @@ export default class Parameters extends Component {
                         </label>
                     </div>
                 </div>
-                <div className='parameters__field parameters__field_mosquito'>
-                    <div className='parameters__label'>Москитная сетка:</div>
-                    <div className='parameters__cont'>
-                        <label className='parameters__item parameters__item_mosquito' htmlFor={'field_mosquito-1-frame-' + this.props.num}>
-                            <input onChange={this.mosquitoClick} className='parameters__input' id={'field_mosquito-1-frame-' + this.props.num} data-index='0' defaultChecked="" type="checkbox" />
-                        </label>
+                {
+                    state.frame__1 === 'window'
+                    &&
+                    <div className='parameters__field parameters__field_mosquito'>
+                        <div className='parameters__label'>Москитная сетка:</div>
+                        <div className='parameters__cont'>
+                            <label className='parameters__item parameters__item_mosquito' htmlFor={'field_mosquito-1-frame-' + this.props.num}>
+                                <input onChange={this.mosquitoClick} className='parameters__input' id={'field_mosquito-1-frame-' + this.props.num} data-index='0' defaultChecked="" type="checkbox" />
+                            </label>
+                        </div>
                     </div>
-                </div>
+                }
             </div>
         )
     }

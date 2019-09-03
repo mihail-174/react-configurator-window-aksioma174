@@ -47,8 +47,16 @@ export default class Frame2 extends Component {
                         :
                         <Remove num={this.props.num} context={context} />
                     }
-                    <Settings num={this.props.num} context={context} />
-                    <Parameters num={this.props.num} context={context} />
+                    {
+                        state.frame__2__type === 'window'
+                        &&
+                        <Settings num={this.props.num} context={context} />
+                    }
+                    {
+                        state.frame__2__type === 'window'
+                        &&
+                            <Parameters num={this.props.num} context={context} />
+                    }
                 </div>
                 <div className='frames__b'>
                     {

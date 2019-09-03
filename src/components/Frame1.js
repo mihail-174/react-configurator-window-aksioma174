@@ -33,7 +33,7 @@ export default class Frame1 extends Component {
         const {context} = this.props,
                 state = context.state;
         if ( state.winds === 2  ) {
-            document.querySelector('.frames__frame-1 .frames__w input').removeAttribute('disabled');
+            // document.querySelector('.frames__frame-1 .frames__w input').removeAttribute('disabled');
         }
         return (
             <div className={ state.frame__1__type==='door' ? 'frames__frame frames__frame-1 door' : 'frames__frame frames__frame-1 window' }>
@@ -49,8 +49,16 @@ export default class Frame1 extends Component {
                         :
                         <Remove num={this.props.num} context={context} />
                     }
-                    <Settings num={this.props.num} context={context} />
-                    <Parameters num={this.props.num} context={context} />
+                    {
+                        state.frame__1__type === 'window'
+                        &&
+                        <Settings num={this.props.num} context={context} />
+                    }
+                    {
+                        state.frame__1__type === 'window'
+                        &&
+                            <Parameters num={this.props.num} context={context} />
+                    }
                 </div>
                 <div className='frames__b'>
                     {
