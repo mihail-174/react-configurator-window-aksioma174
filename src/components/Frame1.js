@@ -5,36 +5,39 @@ import AddBottom from './AddBottom';
 import Settings from './Settings';
 import Parameters from './Parameters';
 
+// 1 створка
 export default class Frame1 extends Component {
     constructor(props) {
         super(props);
         this.onChangeWidth = this.onChangeWidth.bind(this);
     }
-    onChangeWidth(e) {
-        const {context} = this.props,
-                state = context.state;
 
-        let width1, width2, width3 = 0;
-        width1 = e.currentTarget.value;
-        if ( state.frame__2 ) {
-            width2 = state.frame__2__width;
+    onChangeWidth(e) {
+        const {context} = this.props;
+        const state = context.state;
+
+        if ( state.winds === 2 ) {
+            context.methods.setAppState({
+                frame__1__width: Math.ceil(e.currentTarget.value),
+                frame__2__width: Math.ceil(state.width - e.currentTarget.value)
+            });
         }
-        if ( state.frame__3 ) {
-            width3 = state.frame__3__width;
+        if ( state.winds === 3 ) {
+            context.methods.setAppState({
+                frame__1__width: Math.ceil(e.currentTarget.value),
+                frame__2__width: Math.ceil(state.width - e.currentTarget.value - state.frame__3__width)
+            });
         }
-        context.methods.setAppState({
-            width: parseInt( width1, 0 ) + parseInt( width2, 0 ) + parseInt( width3, 0 ),
-            frame__1__width: parseInt( e.currentTarget.value, 0 )
-        });
     }
+
     render() {
         const {context} = this.props,
                 state = context.state;
-
         return (
             <div className={ state.frame__1__type==='door' ? 'frames__frame frames__frame-1 door' : 'frames__frame frames__frame-1 window' }>
                 <div className='frames__w'>
                     <input type='text' onChange={this.onChangeWidth} value={state.frame__1__width} />
+                    <span className="suffix">мм</span>
                 </div>
                 <div className='frames__t'>
                     {
@@ -44,8 +47,16 @@ export default class Frame1 extends Component {
                         :
                         <Remove num={this.props.num} context={context} />
                     }
-                    <Settings num={this.props.num} context={context} />
-                    <Parameters num={this.props.num} context={context} />
+                    {
+                        state.frame__1__type === 'window'
+                        &&
+                        <Settings num={this.props.num} context={context} />
+                    }
+                    {
+                        state.frame__1__type === 'window'
+                        &&
+                            <Parameters num={this.props.num} context={context} />
+                    }
                 </div>
                 <div className='frames__b'>
                     {
@@ -59,4 +70,9 @@ export default class Frame1 extends Component {
             </div>
         )
     }
+
+    componentDidMount() {
+        document.querySelector('.frames__frame-1 .frames__w input').setAttribute('disabled', 'disabled');
+    }
+
 }

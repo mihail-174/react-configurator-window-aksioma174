@@ -14,6 +14,10 @@ export default class RemoveBottom extends Component {
             height: state.height - state.height_door
         });
 
+        // if ( state.frame__1__type==='window' && state.frame__2__type==='window' && state.frame__3__type==='window' ) {
+            document.querySelector('.markup-height .t input').setAttribute('disabled', 'disabled');
+        // }
+
         e.currentTarget.parentNode.parentNode.classList.remove('door');
         e.currentTarget.parentNode.parentNode.classList.add('window');
     }

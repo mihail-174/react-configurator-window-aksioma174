@@ -17,21 +17,21 @@ let initialState = {
     frame__1: true,
     frame__1__type: 'window',
     frame__1__width: 650,
-    frame__1__open_horizontal: 'нет',
+    frame__1__open_horizontal: 'none',
     frame__1__open_vertical: false,
     frame__1__mosquito: false,
 
     frame__2: true,
     frame__2__type: 'window',
     frame__2__width: 650,
-    frame__2__open_horizontal: 'нет',
+    frame__2__open_horizontal: 'none',
     frame__2__open_vertical: false,
     frame__2__mosquito: false,
 
     frame__3: false,
     frame__3__type: 'window',
     frame__3__width: 650,
-    frame__3__open_horizontal: 'нет',
+    frame__3__open_horizontal: 'none',
     frame__3__open_vertical: false,
     frame__3__mosquito: false,
 
@@ -50,43 +50,72 @@ class App extends Component {
         this.onChangeHeightWind = this.onChangeHeightWind.bind(this);
         this.onChangeHeightDoor = this.onChangeHeightDoor.bind(this);
         this.openModal = this.openModal.bind(this);
+        this.heightFrame = React.createRef();
+        this.heightWind = React.createRef();
+        this.widthWind = React.createRef();
     }
     setAppState(newState) {
       this.setState(newState);
     }
     onChangeWidth(e) {
         this.setState({
-            width: parseInt( e.currentTarget.value, 0 ),
-            frame__1__width: e.currentTarget.value/this.state.winds,
-            frame__2__width: e.currentTarget.value/this.state.winds,
-            frame__3__width: e.currentTarget.value/this.state.winds
+            width: parseInt( e.currentTarget.value, 0 )
+            // frame__1__width: Math.ceil(e.currentTarget.value/this.state.winds),
+            // frame__2__width: Math.ceil(e.currentTarget.value/this.state.winds),
+            // frame__3__width: Math.ceil(e.currentTarget.value/this.state.winds)
         });
+        if (  this.state.winds === 1 ) {
+            this.setState({
+                frame__1__width: parseInt( e.currentTarget.value, 0 )
+            });
+        }
+        if (  this.state.winds === 2 ) {
+            this.setState({
+                frame__1__width: Math.ceil(e.currentTarget.value/this.state.winds),
+                frame__2__width: Math.ceil(e.currentTarget.value/this.state.winds)
+            });
+        }
+        if (  this.state.winds === 3 ) {
+            this.setState({
+                frame__1__width: Math.ceil(e.currentTarget.value/this.state.winds),
+                frame__2__width: Math.ceil(e.currentTarget.value/this.state.winds),
+                frame__3__width: Math.ceil(e.currentTarget.value/this.state.winds)
+            });
+        }
     }
     onChangeHeight(e) {
-        let heightWind = 0,
-            heightDoor = 0;
-        heightWind = e.currentTarget.value * 63.63636363636363 / 100;
-        heightDoor = e.currentTarget.value * 36.36363636363637 / 100;
-        this.setState({
-            height: parseInt( e.currentTarget.value, 0 ),
-            height_wind: heightWind,
-            height_door: heightDoor
-        });
+        // let heightWind = 0,
+        //     heightDoor = 0;
+        // heightWind = e.currentTarget.value * 63.63636363636363 / 100;
+        // heightDoor = e.currentTarget.value * 36.36363636363637 / 100;
+
+        if ( this.state.frame__1__type === 'window' && this.state.frame__2__type === 'window' && this.state.frame__2__type === 'window' ) {
+            this.setState({
+                height: parseInt( e.currentTarget.value, 0 ),
+                height_wind: parseInt( e.currentTarget.value, 0 )
+            });
+        }
+        if ( this.state.frame__1__type === 'door' || this.state.frame__2__type === 'door' || this.state.frame__2__type === 'door' ) {
+            this.setState({
+                height: parseInt( e.currentTarget.value,0 ),
+                height_wind: Math.ceil( ( 63.63636363636364 * parseInt( e.currentTarget.value,0 ) ) / 100 ),
+                height_door: Math.ceil( ( 36.36363636363636 * parseInt( e.currentTarget.value,0 ) ) / 100 )
+
+                // height_door: parseInt( e.currentTarget.value, 0 ) - parseInt( this.state.height_wind, 0 )
+                // height_wind: Math.ceil( (63.63636363636363 * this.state.height ) / 100)
+            });
+        }
     }
     onChangeHeightWind(e) {
-        let heightDoor = 0;
-        if ( this.state.frame__1__type==='door' || this.state.frame__2__type==='door' || this.state.frame__3__type==='door' ) {
-            heightDoor = this.state.height_door;
-        }
         this.setState({
-            height: parseInt( e.currentTarget.value, 0 ) + heightDoor,
-            height_wind: parseInt( e.currentTarget.value, 0 )
+            height_wind: parseInt( e.currentTarget.value, 0 ),
+            height_door: this.state.height - parseInt( e.currentTarget.value, 0 )
         });
     }
     onChangeHeightDoor(e) {
         this.setState({
-            height: this.state.height_wind + parseInt( e.currentTarget.value, 0 ),
-            height_door: parseInt( e.currentTarget.value, 0 )
+            height_door: parseInt( e.currentTarget.value, 0 ),
+            height_wind: this.state.height - parseInt( e.currentTarget.value, 0 )
         });
     }
     openModal(e) {
@@ -100,6 +129,7 @@ class App extends Component {
            <Context.Provider value={{ state: this.state, methods: {setAppState: (value) => this.setState(value)}}}>
             <Context.Consumer>{context => (
                 <div className="app">
+                <div className="app__inner">
                     <div className="app__hd">
                         <h2 className='app__title'>Калькулятор окон</h2>
                     </div>
@@ -107,17 +137,20 @@ class App extends Component {
 
                         <div className='markup-height'>
                             <div className='l'>
-                                <input type='text' onChange={this.onChangeHeight} value={this.state.height} />
+                                <input ref={this.heightFrame} type='text' onChange={this.onChangeHeight} value={this.state.height} />
+                                <span className="suffix">мм</span>
                             </div>
                             <div>
                                 <div className='t'>
-                                    <input type='text' onChange={this.onChangeHeightWind} value={this.state.height_wind} />
+                                    <input ref={this.heightWind} type='text' onChange={this.onChangeHeightWind} value={this.state.height_wind} />
+                                    <span className="suffix">мм</span>
                                 </div>
                                 {
                                     this.state.frame__1__type==='door' || this.state.frame__2__type==='door' || this.state.frame__3__type==='door'
                                     ?
                                     <div className='b'>
                                         <input type='text' onChange={this.onChangeHeightDoor} value={this.state.height_door} />
+                                        <span className="suffix">мм</span>
                                     </div>
                                     :
                                     ''
@@ -128,7 +161,8 @@ class App extends Component {
                         <div className='frames'>
 
                             <div className='markup-width'>
-                                <input type='text' onChange={this.onChangeWidth} value={this.state.width} />
+                                <input ref={this.widthWind} type='text' onChange={this.onChangeWidth} value={this.state.width} />
+                                <span className="suffix">мм</span>
                             </div>
 
                             <div className='frames__cont'>
@@ -156,11 +190,13 @@ class App extends Component {
 
                     <Modal context={context} />
 
-                    {/*
-                        <pre>
+                </div>
+
+                {
+                    <pre>
                         {JSON.stringify(this.state, "", 4)}
-                        </pre>
-                    */}
+                    </pre>
+                }
 
                 </div>
             )}</Context.Consumer>
@@ -169,11 +205,20 @@ class App extends Component {
     }
 
     componentDidMount() {
+        if ( this.state.frame__1__type==='window' && this.state.frame__2__type==='window' && this.state.frame__3__type==='window' ) {
+            this.heightWind.current.setAttribute('disabled', 'disabled');
+        }
         this.setState({
             ...initialState,
             data: this.props.data
-        })
+        });
+        if ( this.state.winds === 1 ) {
+            this.setState({
+                frame__1__width: this.state.width
+            });
+        }
     }
+
 }
 
 export default App;
