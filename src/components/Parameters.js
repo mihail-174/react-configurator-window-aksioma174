@@ -83,18 +83,14 @@ export default class Parameters extends Component {
                         </label>
                     </div>
                 </div>
-                {
-                    state.frame__1 === 'window'
-                    &&
-                    <div className='parameters__field parameters__field_mosquito'>
-                        <div className='parameters__label'>Москитная сетка:</div>
-                        <div className='parameters__cont'>
-                            <label className='parameters__item parameters__item_mosquito' htmlFor={'field_mosquito-1-frame-' + this.props.num}>
-                                <input onChange={this.mosquitoClick} className='parameters__input' id={'field_mosquito-1-frame-' + this.props.num} data-index='0' defaultChecked="" type="checkbox" />
-                            </label>
-                        </div>
+                <div className='parameters__field parameters__field_mosquito'>
+                    <div className='parameters__label'>Москитная сетка:</div>
+                    <div className='parameters__cont'>
+                        <label className='parameters__item parameters__item_mosquito' htmlFor={'field_mosquito-1-frame-' + this.props.num}>
+                            <input onChange={this.mosquitoClick} className='parameters__input' id={'field_mosquito-1-frame-' + this.props.num} data-index='0' defaultChecked="" type="checkbox" />
+                        </label>
                     </div>
-                }
+                </div>
             </div>
         )
     }

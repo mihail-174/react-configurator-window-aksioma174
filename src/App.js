@@ -138,19 +138,19 @@ class App extends Component {
                         <div className='markup-height'>
                             <div className='l'>
                                 <input ref={this.heightFrame} type='text' onChange={this.onChangeHeight} value={this.state.height} />
-                                <span class="suffix">мм</span>
+                                <span className="suffix">мм</span>
                             </div>
                             <div>
                                 <div className='t'>
                                     <input ref={this.heightWind} type='text' onChange={this.onChangeHeightWind} value={this.state.height_wind} />
-                                    <span class="suffix">мм</span>
+                                    <span className="suffix">мм</span>
                                 </div>
                                 {
                                     this.state.frame__1__type==='door' || this.state.frame__2__type==='door' || this.state.frame__3__type==='door'
                                     ?
                                     <div className='b'>
                                         <input type='text' onChange={this.onChangeHeightDoor} value={this.state.height_door} />
-                                        <span class="suffix">мм</span>
+                                        <span className="suffix">мм</span>
                                     </div>
                                     :
                                     ''
@@ -162,7 +162,7 @@ class App extends Component {
 
                             <div className='markup-width'>
                                 <input ref={this.widthWind} type='text' onChange={this.onChangeWidth} value={this.state.width} />
-                                <span class="suffix">мм</span>
+                                <span className="suffix">мм</span>
                             </div>
 
                             <div className='frames__cont'>

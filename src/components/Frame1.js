@@ -5,6 +5,7 @@ import AddBottom from './AddBottom';
 import Settings from './Settings';
 import Parameters from './Parameters';
 
+// 1 створка
 export default class Frame1 extends Component {
     constructor(props) {
         super(props);
@@ -32,14 +33,11 @@ export default class Frame1 extends Component {
     render() {
         const {context} = this.props,
                 state = context.state;
-        if ( state.winds === 2  ) {
-            // document.querySelector('.frames__frame-1 .frames__w input').removeAttribute('disabled');
-        }
         return (
             <div className={ state.frame__1__type==='door' ? 'frames__frame frames__frame-1 door' : 'frames__frame frames__frame-1 window' }>
                 <div className='frames__w'>
                     <input type='text' onChange={this.onChangeWidth} value={state.frame__1__width} />
-                    <span class="suffix">мм</span>
+                    <span className="suffix">мм</span>
                 </div>
                 <div className='frames__t'>
                     {
@@ -74,8 +72,6 @@ export default class Frame1 extends Component {
     }
 
     componentDidMount() {
-        const {context} = this.props;
-        const state = context.state;
         document.querySelector('.frames__frame-1 .frames__w input').setAttribute('disabled', 'disabled');
     }
 
