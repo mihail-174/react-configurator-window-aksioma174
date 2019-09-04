@@ -14,11 +14,12 @@ export default class Parameters extends Component {
     mosquitoClick(e) {
         const {context} = this.props;
         e.currentTarget.parentNode.classList.toggle('active');
+        document.querySelector(".frames__frame-" + this.props.num).classList.toggle('frames__frame_mosquito');
         context.methods.setAppState({
             ['frame__' + this.props.num + '__mosquito']: e.currentTarget.checked
         });
     }
-    horizontalClick(e, value) {
+    horizontalClick(e, value, windowId) {
         const {context} = this.props;
         let list = e.currentTarget.parentNode.parentNode.querySelectorAll(".parameters__item");
         [].forEach.call(list, function(el) {
@@ -26,15 +27,19 @@ export default class Parameters extends Component {
         });
         e.currentTarget.parentNode.classList.add('active');
         let open='';
+        document.querySelector(".frames__frame-" + windowId).classList.remove('frames__frame_open-x-none', 'frames__frame_open-x-left', 'frames__frame_open-x-right')
         switch ( parseInt(e.currentTarget.getAttribute('data-index'), 0) ) {
             case 0:
                 open='none';
+                document.querySelector(".frames__frame-" + windowId).classList.add('frames__frame_open-x-none')
                 break;
             case 1:
                 open='right';
+                document.querySelector(".frames__frame-" + windowId).classList.add('frames__frame_open-x-right')
                 break;
             case 2:
                 open='left';
+                document.querySelector(".frames__frame-" + windowId).classList.add('frames__frame_open-x-left')
                 break;
             default:
         }
@@ -46,6 +51,7 @@ export default class Parameters extends Component {
     verticalClick(e) {
         const {context} = this.props;
         e.currentTarget.parentNode.classList.toggle('active');
+        document.querySelector(".frames__frame-" + this.props.num).classList.toggle('frames__frame_open-y-top');
         context.methods.setAppState({
             ['frame__' + this.props.num + '__open_vertical']: e.currentTarget.checked
         });
@@ -64,14 +70,14 @@ export default class Parameters extends Component {
                             state.frame__1__type === 'window'
                             &&
                             <label className='parameters__item parameters__item_none active' htmlFor={'radio-h-1-frame-' + this.props.num}>
-                                <input onChange={(e)=>this.horizontalClick(e, 0)} className='parameters__input' name={'radio-horizontal-frame-' + this.props.num} data-index='0' id={'radio-h-1-frame-' + this.props.num} defaultChecked='true' type="radio" />
+                                <input onChange={(e)=>this.horizontalClick(e, 0, this.props.num)} className='parameters__input' name={'radio-horizontal-frame-' + this.props.num} data-index='0' id={'radio-h-1-frame-' + this.props.num} defaultChecked='true' type="radio" />
                             </label>
                         }
                         <label className='parameters__item parameters__item_left' htmlFor={'radio-h-3-frame-' + this.props.num}>
-                            <input onChange={(e)=>this.horizontalClick(e, 1)} className='parameters__input' name={'radio-horizontal-frame-' + this.props.num} data-index='2' id={'radio-h-3-frame-' + this.props.num} defaultChecked='' type="radio" />
+                            <input onChange={(e)=>this.horizontalClick(e, 1, this.props.num)} className='parameters__input' name={'radio-horizontal-frame-' + this.props.num} data-index='2' id={'radio-h-3-frame-' + this.props.num} defaultChecked='' type="radio" />
                         </label>
                         <label className='parameters__item parameters__item_right' htmlFor={'radio-h-2-frame-' + this.props.num}>
-                            <input onChange={(e)=>this.horizontalClick(e, 2)} className='parameters__input' name={'radio-horizontal-frame-' + this.props.num} data-index='1' id={'radio-h-2-frame-' + this.props.num} defaultChecked='' type="radio" />
+                            <input onChange={(e)=>this.horizontalClick(e, 2, this.props.num)} className='parameters__input' name={'radio-horizontal-frame-' + this.props.num} data-index='1' id={'radio-h-2-frame-' + this.props.num} defaultChecked='' type="radio" />
                         </label>
                     </div>
                 </div>
@@ -94,4 +100,9 @@ export default class Parameters extends Component {
             </div>
         )
     }
+
+    componentDidMount() {
+        document.querySelector(".frames__frame-" + this.props.num).classList.add('frames__frame_open-x-none')
+    }
+
 }
