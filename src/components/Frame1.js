@@ -31,10 +31,10 @@ export default class Frame1 extends Component {
     }
 
     render() {
-        const {context} = this.props,
-                state = context.state;
+        const {context} = this.props;
+        const state = context.state;
         return (
-            <div className={ state.frame__1__type==='door' ? 'frames__frame frames__frame-1 door' : 'frames__frame frames__frame-1 window' }>
+            <div className={'frames__frame frames__frame-1 window'}>
                 <div className='frames__w'>
                     <input type='text' onChange={this.onChangeWidth} value={state.frame__1__width} />
                     <span className="suffix">мм</span>
@@ -47,16 +47,8 @@ export default class Frame1 extends Component {
                         :
                         <Remove num={this.props.num} context={context} />
                     }
-                    {
-                        state.frame__1__type === 'window'
-                        &&
-                        <Settings num={this.props.num} context={context} />
-                    }
-                    {
-                        state.frame__1__type === 'window'
-                        &&
-                            <Parameters num={this.props.num} context={context} />
-                    }
+                    <Settings num={this.props.num} context={context} />
+                    <Parameters num={this.props.num} context={context} />
                 </div>
                 <div className='frames__b'>
                     {

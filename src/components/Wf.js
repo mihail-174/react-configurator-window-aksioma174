@@ -59,6 +59,24 @@ export default class Wf extends Component {
         }
         if ( state.frame__1__type === 'door' ) {
             typeWindow = 'Дверь';
+            if ( state.frame__1__open_horizontal === 'none' && state.frame__1__open_vertical === false ) {
+                typeFrame1 = 'Тип двери: глухая.';
+            }
+            if ( state.frame__1__open_horizontal === 'none' && state.frame__1__open_vertical ) {
+                typeFrame1 = 'Тип двери: откидная.';
+            }
+            if ( state.frame__1__open_horizontal === 'left' && state.frame__1__open_vertical === false ) {
+                typeFrame1 = 'Тип двери: поворотная влево.';
+            }
+            if ( state.frame__1__open_horizontal === 'left' && state.frame__1__open_vertical ) {
+                typeFrame1 = 'Тип двери: поворотная влево/откидная.';
+            }
+            if ( state.frame__1__open_horizontal === 'right' && state.frame__1__open_vertical === false ) {
+                typeFrame1 = 'Тип двери: поворотная вправо.';
+            }
+            if ( state.frame__1__open_horizontal === 'right' && state.frame__1__open_vertical ) {
+                typeFrame1 = 'Тип двери: поворотная вправо/откидная.';
+            }
         }
         widthFrame1 = 'Ширина окна: ' + state.frame__1__width + 'мм';
     }

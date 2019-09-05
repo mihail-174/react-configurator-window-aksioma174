@@ -13,6 +13,44 @@ let initialState = {
     height: 1400,
     height_wind: 1400,
     height_door: 800,
+    parametersWindow2: {
+        checked: 'ыыыыы',
+    },
+    parametersWindow: [
+        {
+            name: 'Гор. открытие',
+            systemName: 'horizontal',
+            type: 'radio',
+            value: [
+                {
+                    name: 'none',
+                    checked: true
+                },
+                {
+                    name: 'left',
+                    checked: false
+                },
+                {
+                    name: 'right',
+                    checked: false
+                }
+            ]
+        },
+        {
+            name: 'Верт. открытие',
+            systemName: 'vertical',
+            type: 'checkbox',
+            value: ['top'],
+            checked: false
+        },
+        {
+            name: 'Москитная сетка',
+            systemName: 'mosquito',
+            type: 'checkbox',
+            value: ['mosquito'],
+            checked: false
+        }
+    ],
 
     frame__1: true,
     frame__1__type: 'window',

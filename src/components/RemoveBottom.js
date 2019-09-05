@@ -11,7 +11,8 @@ export default class RemoveBottom extends Component {
 
         context.methods.setAppState({
             ['frame__' + this.props.num+'__type']: 'window',
-            height: state.height - state.height_door
+            height: state.height - state.height_door,
+            ['frame__'+this.props.num+'__open_horizontal']: 'none'
         });
 
         // if ( state.frame__1__type==='window' && state.frame__2__type==='window' && state.frame__3__type==='window' ) {
