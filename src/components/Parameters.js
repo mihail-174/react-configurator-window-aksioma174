@@ -34,10 +34,10 @@ export default class Parameters extends Component {
                     openName='none';
                     break;
                 case 1:
-                    openName='right';
+                    openName='left';
                     break;
                 case 2:
-                    openName='left';
+                    openName='right';
                     break;
                 default:
             }
