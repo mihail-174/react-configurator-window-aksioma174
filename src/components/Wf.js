@@ -31,24 +31,24 @@ export default class Wf extends Component {
         if ( state.frame__1__type === 'window' ) {
             typeWindow = 'Одностворчатое окно.';
 
-            if ( state.frame__1__open_horizontal === 'none' && state.frame__1__open_vertical === false ) {
+            if ( state.frame__1__horizontal_name === 'none' && state.frame__1__vertical === false ) {
                 typeFrame1 = 'Тип створки: глухая.';
             }
-            if ( state.frame__1__open_horizontal === 'none' && state.frame__1__open_vertical ) {
+            if ( state.frame__1__horizontal_name === 'none' && state.frame__1__vertical ) {
                 typeFrame1 = 'Тип створки: откидная.';
             }
 
-            if ( state.frame__1__open_horizontal === 'left' && state.frame__1__open_vertical === false ) {
+            if ( state.frame__1__horizontal_name === 'left' && state.frame__1__vertical === false ) {
                 typeFrame1 = 'Тип створки: поворотная влево.';
             }
-            if ( state.frame__1__open_horizontal === 'left' && state.frame__1__open_vertical ) {
+            if ( state.frame__1__horizontal_name === 'left' && state.frame__1__vertical ) {
                 typeFrame1 = 'Тип створки: поворотная влево/откидная.';
             }
 
-            if ( state.frame__1__open_horizontal === 'right' && state.frame__1__open_vertical === false ) {
+            if ( state.frame__1__horizontal_name === 'right' && state.frame__1__vertical === false ) {
                 typeFrame1 = 'Тип створки: поворотная вправо.';
             }
-            if ( state.frame__1__open_horizontal === 'right' && state.frame__1__open_vertical ) {
+            if ( state.frame__1__horizontal_name === 'right' && state.frame__1__vertical ) {
                 typeFrame1 = 'Тип створки: поворотная вправо/откидная.';
             }
             if ( state.frame__1__mosquito ) {
@@ -59,6 +59,24 @@ export default class Wf extends Component {
         }
         if ( state.frame__1__type === 'door' ) {
             typeWindow = 'Дверь';
+            if ( state.frame__1__horizontal_name === 'none' && state.frame__1__vertical === false ) {
+                typeFrame1 = 'Тип двери: глухая.';
+            }
+            if ( state.frame__1__horizontal_name === 'none' && state.frame__1__vertical ) {
+                typeFrame1 = 'Тип двери: откидная.';
+            }
+            if ( state.frame__1__horizontal_name === 'left' && state.frame__1__vertical === false ) {
+                typeFrame1 = 'Тип двери: поворотная влево.';
+            }
+            if ( state.frame__1__horizontal_name === 'left' && state.frame__1__vertical ) {
+                typeFrame1 = 'Тип двери: поворотная влево/откидная.';
+            }
+            if ( state.frame__1__horizontal_name === 'right' && state.frame__1__vertical === false ) {
+                typeFrame1 = 'Тип двери: поворотная вправо.';
+            }
+            if ( state.frame__1__horizontal_name === 'right' && state.frame__1__vertical ) {
+                typeFrame1 = 'Тип двери: поворотная вправо/откидная.';
+            }
         }
         widthFrame1 = 'Ширина окна: ' + state.frame__1__width + 'мм';
     }
@@ -67,24 +85,24 @@ export default class Wf extends Component {
         if ( state.frame__1__type === 'window' && state.frame__2__type === 'window' ) {
             typeWindow = 'Двухстворчатое окно.';
 
-            if ( state.frame__1__open_horizontal === 'none' && state.frame__1__open_vertical === false ) {
+            if ( state.frame__1__horizontal_name === 'none' && state.frame__1__vertical === false ) {
                 typeFrame1 = 'Тип 1 створки: глухая.';
             }
-            if ( state.frame__1__open_horizontal === 'none' && state.frame__1__open_vertical ) {
+            if ( state.frame__1__horizontal_name === 'none' && state.frame__1__vertical ) {
                 typeFrame1 = 'Тип 1 створки: откидная.';
             }
 
-            if ( state.frame__1__open_horizontal === 'left' && state.frame__1__open_vertical === false ) {
+            if ( state.frame__1__horizontal_name === 'left' && state.frame__1__vertical === false ) {
                 typeFrame1 = 'Тип 1 створки: поворотная влево.';
             }
-            if ( state.frame__1__open_horizontal === 'left' && state.frame__1__open_vertical ) {
+            if ( state.frame__1__horizontal_name === 'left' && state.frame__1__vertical ) {
                 typeFrame1 = 'Тип 1 створки: поворотная влево/откидная.';
             }
 
-            if ( state.frame__1__open_horizontal === 'right' && state.frame__1__open_vertical === false ) {
+            if ( state.frame__1__horizontal_name === 'right' && state.frame__1__vertical === false ) {
                 typeFrame1 = 'Тип 1 створки: поворотная вправо.';
             }
-            if ( state.frame__1__open_horizontal === 'right' && state.frame__1__open_vertical ) {
+            if ( state.frame__1__horizontal_name === 'right' && state.frame__1__vertical ) {
                 typeFrame1 = 'Тип 1 створки: поворотная вправо/откидная.';
             }
 
@@ -94,24 +112,24 @@ export default class Wf extends Component {
                 mosquitoFrame1 = 'Москитная сетка 1 створки: нет.';
             }
 
-            if ( state.frame__2__open_horizontal === 'none' && state.frame__2__open_vertical === false ) {
+            if ( state.frame__2__horizontal_name === 'none' && state.frame__2__vertical === false ) {
                 typeFrame2 = 'Тип 2 створки: глухая.';
             }
-            if ( state.frame__2__open_horizontal === 'none' && state.frame__2__open_vertical ) {
+            if ( state.frame__2__horizontal_name === 'none' && state.frame__2__vertical ) {
                 typeFrame2 = 'Тип 2 створки: откидная.';
             }
 
-            if ( state.frame__2__open_horizontal === 'left' && state.frame__2__open_vertical === false ) {
+            if ( state.frame__2__horizontal_name === 'left' && state.frame__2__vertical === false ) {
                 typeFrame2 = 'Тип 2 створки: поворотная влево.';
             }
-            if ( state.frame__2__open_horizontal === 'left' && state.frame__2__open_vertical ) {
+            if ( state.frame__2__horizontal_name === 'left' && state.frame__2__vertical ) {
                 typeFrame2 = 'Тип 2 створки: поворотная влево/откидная.';
             }
 
-            if ( state.frame__2__open_horizontal === 'right' && state.frame__2__open_vertical === false ) {
+            if ( state.frame__2__horizontal_name === 'right' && state.frame__2__vertical === false ) {
                 typeFrame2 = 'Тип 2 створки: поворотная вправо.';
             }
-            if ( state.frame__2__open_horizontal === 'right' && state.frame__2__open_vertical ) {
+            if ( state.frame__2__horizontal_name === 'right' && state.frame__2__vertical ) {
                 typeFrame2 = 'Тип 2 створки: поворотная вправо/откидная.';
             }
             if ( state.frame__2__mosquito ) {
@@ -134,24 +152,24 @@ export default class Wf extends Component {
         if ( state.frame__1__type === 'window' && state.frame__2__type === 'window' && state.frame__3__type === 'window' ) {
             typeWindow = 'Трехстворчатое окно.';
 
-            if ( state.frame__1__open_horizontal === 'none' && state.frame__1__open_vertical === false ) {
+            if ( state.frame__1__horizontal_name === 'none' && state.frame__1__vertical === false ) {
                 typeFrame1 = 'Тип 1 створки: глухая.';
             }
-            if ( state.frame__1__open_horizontal === 'none' && state.frame__1__open_vertical ) {
+            if ( state.frame__1__horizontal_name === 'none' && state.frame__1__vertical ) {
                 typeFrame1 = 'Тип 1 створки: откидная.';
             }
 
-            if ( state.frame__1__open_horizontal === 'left' && state.frame__1__open_vertical === false ) {
+            if ( state.frame__1__horizontal_name === 'left' && state.frame__1__vertical === false ) {
                 typeFrame1 = 'Тип 1 створки: поворотная влево.';
             }
-            if ( state.frame__1__open_horizontal === 'left' && state.frame__1__open_vertical ) {
+            if ( state.frame__1__horizontal_name === 'left' && state.frame__1__vertical ) {
                 typeFrame1 = 'Тип 1 створки: поворотная влево/откидная.';
             }
 
-            if ( state.frame__1__open_horizontal === 'right' && state.frame__1__open_vertical === false ) {
+            if ( state.frame__1__horizontal_name === 'right' && state.frame__1__vertical === false ) {
                 typeFrame1 = 'Тип 1 створки: поворотная вправо.';
             }
-            if ( state.frame__1__open_horizontal === 'right' && state.frame__1__open_vertical ) {
+            if ( state.frame__1__horizontal_name === 'right' && state.frame__1__vertical ) {
                 typeFrame1 = 'Тип 1 створки: поворотная вправо/откидная.';
             }
 
@@ -161,24 +179,24 @@ export default class Wf extends Component {
                 mosquitoFrame1 = 'Москитная сетка 1 створки: нет.';
             }
 
-            if ( state.frame__2__open_horizontal === 'none' && state.frame__2__open_vertical === false ) {
+            if ( state.frame__2__horizontal_name === 'none' && state.frame__2__vertical === false ) {
                 typeFrame2 = 'Тип 2 створки: глухая.';
             }
-            if ( state.frame__2__open_horizontal === 'none' && state.frame__2__open_vertical ) {
+            if ( state.frame__2__horizontal_name === 'none' && state.frame__2__vertical ) {
                 typeFrame2 = 'Тип 2 створки: откидная.';
             }
 
-            if ( state.frame__2__open_horizontal === 'left' && state.frame__2__open_vertical === false ) {
+            if ( state.frame__2__horizontal_name === 'left' && state.frame__2__vertical === false ) {
                 typeFrame2 = 'Тип 2 створки: поворотная влево.';
             }
-            if ( state.frame__2__open_horizontal === 'left' && state.frame__2__open_vertical ) {
+            if ( state.frame__2__horizontal_name === 'left' && state.frame__2__vertical ) {
                 typeFrame2 = 'Тип 2 створки: поворотная влево/откидная.';
             }
 
-            if ( state.frame__2__open_horizontal === 'right' && state.frame__2__open_vertical === false ) {
+            if ( state.frame__2__horizontal_name === 'right' && state.frame__2__vertical === false ) {
                 typeFrame2 = 'Тип 2 створки: поворотная вправо.';
             }
-            if ( state.frame__2__open_horizontal === 'right' && state.frame__2__open_vertical ) {
+            if ( state.frame__2__horizontal_name === 'right' && state.frame__2__vertical ) {
                 typeFrame2 = 'Тип 2 створки: поворотная вправо/откидная.';
             }
             if ( state.frame__2__mosquito ) {
@@ -187,24 +205,24 @@ export default class Wf extends Component {
                 mosquitoFrame2 = 'Москитная сетка 2 створки: нет.';
             }
 
-            if ( state.frame__3__open_horizontal === 'none' && state.frame__3__open_vertical === false ) {
+            if ( state.frame__3__horizontal_name === 'none' && state.frame__3__vertical === false ) {
                 typeFrame3 = 'Тип 3 створки: глухая.';
             }
-            if ( state.frame__3__open_horizontal === 'none' && state.frame__3__open_vertical ) {
+            if ( state.frame__3__horizontal_name === 'none' && state.frame__3__vertical ) {
                 typeFrame3 = 'Тип 3 створки: откидная.';
             }
 
-            if ( state.frame__3__open_horizontal === 'left' && state.frame__3__open_vertical === false ) {
+            if ( state.frame__3__horizontal_name === 'left' && state.frame__3__vertical === false ) {
                 typeFrame3 = 'Тип 3 створки: поворотная влево.';
             }
-            if ( state.frame__3__open_horizontal === 'left' && state.frame__3__open_vertical ) {
+            if ( state.frame__3__horizontal_name === 'left' && state.frame__3__vertical ) {
                 typeFrame3 = 'Тип 3 створки: поворотная влево/откидная.';
             }
 
-            if ( state.frame__3__open_horizontal === 'right' && state.frame__3__open_vertical === false ) {
+            if ( state.frame__3__horizontal_name === 'right' && state.frame__3__vertical === false ) {
                 typeFrame3 = 'Тип 3 створки: поворотная вправо.';
             }
-            if ( state.frame__3__open_horizontal === 'right' && state.frame__3__open_vertical ) {
+            if ( state.frame__3__horizontal_name === 'right' && state.frame__3__vertical ) {
                 typeFrame3 = 'Тип 3 створки: поворотная вправо/откидная.';
             }
             if ( state.frame__3__mosquito ) {
@@ -241,14 +259,6 @@ export default class Wf extends Component {
               </div>
               <div className='wf__field wf__phone'>
                 <input required type='text' name='phone' placeholder='Телефон'/>
-              </div>
-              <div className='wf__field wf__calculated'>
-                  <input type='hidden' name='type' value={state.frame__1__type==='door'||state.frame__2__type==='door'||state.frame__3__type==='door'?'Балкон':'Окно'} readOnly />
-                  <input type='hidden' name='width' value={state.width} readOnly />
-                  <input type='hidden' name='height' value={state.height} readOnly />
-                  {state.frame__1 && <textarea hidden="hidden" name='frame1' value={`Первая створка: — Ширина створки: ${state.frame__1__width} — Дверь: ${state.frame__1__type==='door'?'да':'нет'} — Горизонтальное открытие: ${state.frame__1__open_horizontal} — Вертикальное открытие: ${state.frame__1__open_vertical?'да':'нет'} — Москитная сетка: ${state.frame__1__mosquito?'да':'нет'}`} readOnly />}
-                  {state.frame__2 && <textarea hidden="hidden" name='frame1' value={`Вторая створка: — Ширина створки: ${state.frame__2__width} — Дверь: ${state.frame__2__type==='door'?'да':'нет'} — Горизонтальное открытие: ${state.frame__2__open_horizontal} — Вертикальное открытие: ${state.frame__2__open_vertical?'да':'нет'} — Москитная сетка: ${state.frame__2__mosquito?'да':'нет'}`} readOnly />}
-                  {state.frame__3 && <textarea hidden="hidden" name='frame1' value={`Третья створка: — Ширина створки: ${state.frame__3__width} — Дверь: ${state.frame__3__type==='door'?'да':'нет'} — Горизонтальное открытие: ${state.frame__3__open_horizontal} — Вертикальное открытие: ${state.frame__3__open_vertical?'да':'нет'} — Москитная сетка: ${state.frame__3__mosquito?'да':'нет'}`} readOnly />}
               </div>
               <div className='wf__data'>
                   {
