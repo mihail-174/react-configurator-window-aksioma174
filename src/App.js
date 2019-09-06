@@ -8,69 +8,54 @@ import './style/App.css';
 const Context = React.createContext()
 
 let initialState = {
-    winds: 2,
+    winds: 1,
     width: 1300,
     height: 1400,
     height_wind: 1400,
     height_door: 800,
-    parametersWindow2: {
-        checked: 'ыыыыы',
-    },
     parametersWindow: [
         {
             name: 'Гор. открытие',
             systemName: 'horizontal',
             type: 'radio',
-            value: [
-                {
-                    name: 'none',
-                    checked: true
-                },
-                {
-                    name: 'left',
-                    checked: false
-                },
-                {
-                    name: 'right',
-                    checked: false
-                }
-            ]
+            value: ['none', 'left', 'right']
         },
         {
             name: 'Верт. открытие',
             systemName: 'vertical',
             type: 'checkbox',
-            value: ['top'],
-            checked: false
+            value: ['top']
         },
         {
             name: 'Москитная сетка',
             systemName: 'mosquito',
             type: 'checkbox',
-            value: ['mosquito'],
-            checked: false
+            value: ['mosquito']
         }
     ],
 
     frame__1: true,
     frame__1__type: 'window',
     frame__1__width: 650,
-    frame__1__open_horizontal: 'none',
-    frame__1__open_vertical: false,
+    frame__1__horizontal_name: "none",
+    frame__1__horizontal: 0,
+    frame__1__vertical: false,
     frame__1__mosquito: false,
 
     frame__2: true,
     frame__2__type: 'window',
     frame__2__width: 650,
-    frame__2__open_horizontal: 'none',
-    frame__2__open_vertical: false,
+    frame__2__horizontal_name: "none",
+    frame__2__horizontal: 0,
+    frame__2__vertical: false,
     frame__2__mosquito: false,
 
     frame__3: false,
     frame__3__type: 'window',
     frame__3__width: 650,
-    frame__3__open_horizontal: 'none',
-    frame__3__open_vertical: false,
+    frame__3__horizontal_name: "none",
+    frame__3__horizontal: 0,
+    frame__3__vertical: false,
     frame__3__mosquito: false,
 
     modal: false
@@ -230,11 +215,11 @@ class App extends Component {
 
                 </div>
 
-                {
+                {/*
                     <pre>
                         {JSON.stringify(this.state, "", 4)}
                     </pre>
-                }
+                */}
 
                 </div>
             )}</Context.Consumer>

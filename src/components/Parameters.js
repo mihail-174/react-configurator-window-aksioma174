@@ -24,17 +24,32 @@ export default class Parameters extends Component {
     close(e) {
         e.currentTarget.parentNode.classList.remove('active');
     }
-    onChange(e, index) {
-        // console.log(e.currentTarget);
+    onChange(e, index, systemName) {
         const {context} = this.props;
         const state = context.state;
-        // console.log(index);
-        context.methods.setAppState({
-            parametersWindow2: {
-                ...state.parametersWindow2,
-                checked: e.currentTarget.checked
+        if ( systemName === 'horizontal' ) {
+            let openName='';
+            switch ( index ) {
+                case 0:
+                    openName='none';
+                    break;
+                case 1:
+                    openName='right';
+                    break;
+                case 2:
+                    openName='left';
+                    break;
+                default:
             }
-        });
+            context.methods.setAppState({
+                ['frame__' + this.props.num + '__' + systemName + '_name']: openName,
+                ['frame__' + this.props.num + '__' + systemName]: index
+            });
+        } else {
+            context.methods.setAppState({
+                ['frame__' + this.props.num + '__' + systemName]: e.currentTarget.checked
+            });
+        }
     }
     mosquitoClick(e) {
         const {context} = this.props;
@@ -99,15 +114,21 @@ export default class Parameters extends Component {
                                     return (
                                         <label
                                             key={index2}
-                                            className={"parameters__item parameters__item_" + item2.name + (item2.checked ? ' active':'')}
+                                            className={"parameters__item parameters__item_" + item2 + (index2 === state['frame__' + this.props.num + '__' + item.systemName] ? ' active':'')}
                                             htmlFor={'frame-' + this.props.num + '_' + item.systemName + '-radios-' + index2}
+                                            title={
+                                                item2 === 'none' ? 'Глухая створка':'' +
+                                                item2 === 'left' ? 'Открытие влевую сторону' : '' +
+                                                item2 === 'right' ? 'Открытие вправую сторону' : ''
+                                            }
                                         >
                                             <input
                                                 className='parameters__input'
                                                 name={'frame-' + this.props.num + '_' + item.systemName + '-radios'}
                                                 id={'frame-' + this.props.num + '_' + item.systemName + '-radios-' + index2}
-                                                defaultChecked={item2.checked}
                                                 type={item.type}
+                                                checked={index2 === state['frame__' + this.props.num + '__' + item.systemName] ? true : false}
+                                                onChange={ (e) => this.onChange(e, index2, item.systemName) }
                                             />
                                         </label>
                                     )
@@ -120,16 +141,16 @@ export default class Parameters extends Component {
                                     return (
                                         <label
                                             key={index}
-                                            className={"parameters__item parameters__item_" + item2 + (item.checked ? ' active':'')}
+                                            className={"parameters__item parameters__item_" + item2 + (state['frame__' + this.props.num + '__' + item.systemName] ? ' active':'')}
                                             htmlFor={'frame-' + this.props.num + '_' + item.systemName + '-checkbox-' + index2}
                                         >
                                             <input
                                                 className='parameters__input'
                                                 name={'frame-' + this.props.num + '_' + item.systemName + '-radios'}
                                                 id={'frame-' + this.props.num + '_' + item.systemName + '-checkbox-' + index2}
-                                                defaultChecked={item.checked}
+                                                checked={state['frame__' + this.props.num + '__' + item.systemName] ? true : false}
                                                 type={item.type}
-                                                onChange={ (e) => this.onChange(e, index) }
+                                                onChange={ (e) => this.onChange(e, index, item.systemName) }
                                             />
                                         </label>
                                     )
