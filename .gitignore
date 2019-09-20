@@ -7,9 +7,7 @@
 /coverage
 
 # production
-/build/service-worker.js
-/build/asset-manifest.json
-/build/manifest.json
+/build
 
 # misc
 .DS_Store
