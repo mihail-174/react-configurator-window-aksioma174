@@ -8,7 +8,7 @@ import './style/App.css';
 const Context = React.createContext()
 
 let initialState = {
-    winds: 2,
+    winds: 1,
     width: 1300,
     height: 1400,
     height_wind: 1400,
